@@ -8,6 +8,9 @@ import (
 func main() {
 	router := gin.Default()
 
+	router.Static("/assets", "./assets")
+	router.LoadHTMLGlob("views/*")
+
 	router.GET("/login", c.Login)
 
 	router.Run(":8080")
