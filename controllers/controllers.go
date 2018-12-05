@@ -27,6 +27,14 @@ func sessionCheck(c *gin.Context) (string, error) {
 	return id.(string), nil
 }
 
+func sessionAdd(c *gin.Context, id string, session string) error {
+	store := ginsession.FromContext(c)
+	store.Set("id", id)
+	store.Set("secret", session)
+	err := store.Save()
+	return err
+}
+
 func createEncryptedPassword(plainTextPassword string) string {
 	b := []byte(plainTextPassword)
 	hashbyte := sha256.Sum256(b)

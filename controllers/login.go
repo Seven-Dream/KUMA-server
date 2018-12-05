@@ -41,5 +41,11 @@ func LoginPost(c *gin.Context) {
 		return
 	}
 
+	err = sessionAdd(c, user, "session")
+
+	if err != nil {
+		fmt.Println("not register session")
+	}
+
 	render(c, "mypage.tmpl", gin.H{"title": "MyPage",})
 }
