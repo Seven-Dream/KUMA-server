@@ -17,6 +17,5 @@ func main() {
 	router.GET("/login", c.LoginGet)
 	router.POST("/login", c.LoginPost)
 
-
 	router.Run(":8080")
 }
