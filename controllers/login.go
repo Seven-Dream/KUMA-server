@@ -2,16 +2,15 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/go-session/gin-session"
 
-	m "../models"
+	m "KUMA-server/models"
 
 	"net/http"
 )
 
 func LoginGet(c *gin.Context) {
 	// sessionチェック
-	user, err := sessionCheck(c)
+	_, err := sessionCheck(c)
 	// session情報あり
 	if err == nil {
 		c.Redirect(http.StatusFound, "/mypage")
@@ -21,13 +20,13 @@ func LoginGet(c *gin.Context) {
 }
 
 func LoginPost(c *gin.Context) {
-	user, err := c.PostForm("id")
-	if err != nil {
+	user := c.PostForm("id")
+	if user == "" {
 		c.Redirect(http.StatusFound, "/login")
 		return
 	}
-	plainTextPassword, err := c.PostForm("pass")
-	if err != nil {
+	plainTextPassword := c.PostForm("pass")
+	if plainTextPassword == "" {
 		c.Redirect(http.StatusFound, "/login")
 		return
 	}
@@ -35,12 +34,12 @@ func LoginPost(c *gin.Context) {
 	password := createEncryptedPassword(plainTextPassword)
 
 	// ユーザ情報の確認
-	id, err := m.UserCheckFromIdAndPass(user, password)
+	_, err := m.UserCheckFromIdAndPass(user, password)
 
 	if err != nil {
 		c.Redirect(http.StatusSeeOther, "/login")
 		return
 	}
 
-	render(c, "mypage.tmpl", gin.H{"title": "MyPage",}
+	render(c, "mypage.tmpl", gin.H{"title": "MyPage",})
 }

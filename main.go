@@ -13,7 +13,7 @@ func main() {
 	router.Use(ginsession.New())
 
 	router.GET("/login", c.LoginGet)
-	router.POST("/login", c.LooginCheck(), c.LoginPost)
+	router.POST("/login", c.LoginPost)
 
 	router.Run(":8080")
 }

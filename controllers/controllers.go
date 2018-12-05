@@ -7,23 +7,24 @@ import (
 	"net/http"
 	"encoding/hex"
 	"crypto/sha256"
+	"errors"
 )
 
 func render(c *gin.Context, fileName string, values interface{}) {
 	c.HTML(http.StatusOK, fileName, values)
 }
 
-func sessionCheck(c *gin.Context) {
+func sessionCheck(c *gin.Context) (string, error) {
 	store := ginsession.FromContext(c)
-	id, err := store.Get("id")
-	if err != nil {
-		return _, err
+	id, ok := store.Get("id")
+	if !ok {
+		return "", errors.New("not found")
 	}
-	secret, err := store.Get("secret")
-	if err != nil {
-		return _, err
+	_, ok = store.Get("secret")
+	if !ok {
+		return "", errors.New("not found")
 	}
-	return id, nil
+	return id.(string), nil
 }
 
 func createEncryptedPassword(plainTextPassword string) string {
