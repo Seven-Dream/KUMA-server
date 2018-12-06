@@ -48,5 +48,5 @@ func LoginPost(c *gin.Context) {
 		fmt.Println("not register session")
 	}
 
-	render(c, "mypage.tmpl", gin.H{"title": "MyPage",})
+	render(c, "top.tmpl", gin.H{"title": "Top Page",})
 }
