@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func Logout(c *gin.Context) {
+func LogoutGet(c *gin.Context) {
 	sessionDestroy(c)
 	c.Redirect(http.StatusFound, "/login")
 }
