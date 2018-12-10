@@ -14,6 +14,12 @@ func init() {
 	}
 	defer db.Close()
 
+	err = tableCheckAndCreate(db, &User{})
+	if err != nil  {
+		fmt.Println("User")
+		panic(err)
+	}
+
 	err = tableCheckAndCreate(db, &Lecture{})
 	if err != nil  {
 		fmt.Println("Lecture")
