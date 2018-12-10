@@ -27,6 +27,10 @@ func sessionCheck(c *gin.Context) (string, error) {
 	return id.(string), nil
 }
 
+func sessionDestroy(c *gin.Context) {
+	ginsession.Destroy(c)
+}
+
 func sessionAdd(c *gin.Context, id string, session string) error {
 	store := ginsession.FromContext(c)
 	store.Set("id", id)
