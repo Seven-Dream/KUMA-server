@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
 	router.Use(ginsession.New())
 	router.Static("/assets", "./assets")
@@ -16,6 +16,9 @@ func main() {
 
 	router.GET("/login", c.LoginGet)
 	router.POST("/login", c.LoginPost)
+
+	router.GET("/logout", c.LogoutGet)
+  
 	router.GET("/top", c.TopGet)
 
 	router.Run(":8080")
