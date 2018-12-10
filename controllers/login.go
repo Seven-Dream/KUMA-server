@@ -52,5 +52,5 @@ func LoginPost(c *gin.Context) {
 		fmt.Println("not register session")
 	}
 
-	render(c, "top.tmpl", gin.H{"title": "Top Page",})
+	c.Redirect(http.StatusFound, "/top")
 }
