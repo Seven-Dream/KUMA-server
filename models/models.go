@@ -5,10 +5,32 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 
 	"fmt"
-	"reflect"
 )
 
 func init() {
+	db, err := open()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	err = tableCheckAndCreate(db, &Lecture{})
+	if err != nil  {
+		fmt.Println("Lecture")
+		panic(err)
+	}
+	err = tableCheckAndCreate(db, &Week{})
+	if err != nil  {
+		fmt.Println("Week")
+		panic(err)
+	}
+	err = tableCheckAndCreate(db, &Time{})
+	if err != nil  {
+		fmt.Println("Time")
+		panic(err)
+	}
+
+	/*
 	db, err := gorm.Open("postgres", "host=localhost user=tetsuya dbname=kuma sslmode=disable")
 	defer db.Close()
 	if err != nil {
@@ -16,10 +38,22 @@ func init() {
 		return
 	}
 	fmt.Println(reflect.TypeOf(db))
+	*/
 }
 
+// dbとの接続
 func open() (*gorm.DB, error){
 	return gorm.Open("postgres", "host=localhost user=tetsuya dbname=kuma sslmode=disable")
+}
+
+// テーブルが存在すれば作成する
+func tableCheckAndCreate(db *gorm.DB, t interface{}) error {
+	ok := db.HasTable(t)
+	if !ok {
+		err := db.CreateTable(t).Error
+		return err
+	}
+	return nil
 }
 
 
@@ -32,4 +66,20 @@ func UserCheckFromIdAndPass(id string, pass string) (string, error) {
 		return "", err
 	}
 	return id, err
+}
+
+func AllLecture() []Lecture {
+	db, err := open()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	lecture := []Lecture{}
+
+	err = db.Find(&lecture).Error
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return lecture
 }

@@ -17,6 +17,8 @@ func main() {
 	router.GET("/login", c.LoginGet)
 	router.POST("/login", c.LoginPost)
 
+	router.GET("/lecture", c.LectureGet)
+
 	router.GET("/logout", c.LogoutGet)
   
 	router.GET("/top", c.TopGet)
