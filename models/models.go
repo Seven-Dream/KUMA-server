@@ -7,6 +7,7 @@ import (
 	"fmt"
 )
 
+
 func init() {
 	db, err := open()
 	if err != nil {
@@ -14,54 +15,26 @@ func init() {
 	}
 	defer db.Close()
 
-	err = tableCheckAndCreate(db, &User{})
+	err = db.DropTableIfExists(&User{}, &Lecture{}, &Other{}).Error
 	if err != nil  {
-		fmt.Println("User")
 		panic(err)
 	}
 
-	err = tableCheckAndCreate(db, &Lecture{})
-	if err != nil  {
-		fmt.Println("Lecture")
-		panic(err)
-	}
-	err = tableCheckAndCreate(db, &Week{})
-	if err != nil  {
-		fmt.Println("Week")
-		panic(err)
-	}
-	err = tableCheckAndCreate(db, &Time{})
-	if err != nil  {
-		fmt.Println("Time")
-		panic(err)
-	}
-
-	/*
-	db, err := gorm.Open("postgres", "host=localhost user=tetsuya dbname=kuma sslmode=disable")
-	defer db.Close()
+	err = db.CreateTable(&User{}, &Lecture{}, &Other{}).Error
 	if err != nil {
-		fmt.Println("error", err)
-		return
+		panic(err)
 	}
-	fmt.Println(reflect.TypeOf(db))
-	*/
+
+	err = addUserData("", "")
+	if err != nil {
+		panic(err)
+	}
 }
 
 // dbとの接続
 func open() (*gorm.DB, error){
 	return gorm.Open("postgres", "host=localhost user=tetsuya dbname=kuma sslmode=disable")
 }
-
-// テーブルが存在すれば作成する
-func tableCheckAndCreate(db *gorm.DB, t interface{}) error {
-	ok := db.HasTable(t)
-	if !ok {
-		err := db.CreateTable(t).Error
-		return err
-	}
-	return nil
-}
-
 
 func UserCheckFromIdAndPass(id string, pass string) (string, error) {
 	db, err := open()

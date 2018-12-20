@@ -13,16 +13,12 @@ type Lecture struct {
 	ClassRoom	string
 	Year	int
 	Quarter	int
-	Weeks	[]Week
-	Times	[]Time
+	Others	[]Other
 }
 
-type Week struct {
+type Other struct {
 	LectureID	int
 	Week	string
-}
-
-type Time struct {
-	LectureID	int
 	Time	int
 }
+
