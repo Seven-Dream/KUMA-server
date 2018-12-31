@@ -28,7 +28,7 @@ func RegisterLecturePost(c *gin.Context) {
 		c.Redirect(http.StatusFound, "/login")
 		return
 	}
-	lecture, ok := getLectureData(c)
+	lecture, ok := getLectureDataFromPosted(c)
 	if !ok {
 		c.Redirect(http.StatusFound, "/lecture/register")
 		return

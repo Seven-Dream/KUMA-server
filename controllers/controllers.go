@@ -50,7 +50,7 @@ func createEncryptedPassword(plainTextPassword string) string {
 	return password
 }
 
-func getLectureData(c *gin.Context) (m.Lecture, bool) {
+func getLectureDataFromPosted(c *gin.Context) (m.Lecture, bool) {
 	l := m.Lecture{}
 	noneFlag := false
 
