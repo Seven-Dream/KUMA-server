@@ -19,8 +19,11 @@ func main() {
 
 	router.GET("/lecture", c.LectureGet)
 
+	router.GET("/lecture/register", c.RegisterLectureGet)
+	router.POST("/lecture/register", c.RegisterLecturePost)
+
 	router.GET("/logout", c.LogoutGet)
-  
+
 	router.GET("/top", c.TopGet)
 
 	router.Run(":8080")
