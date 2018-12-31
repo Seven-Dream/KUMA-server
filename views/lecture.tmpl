@@ -16,13 +16,12 @@
 				</tr>
 				{{ range .lecture }}
 				<tr>
-					<td>{{ .LectureName }}</td>
+					<td><a href="/lecture/{{ .Id }}">{{ .LectureName }}</a></td>
 					<td>{{ .Teachar }}</td>
 					<td>{{ .Quarter }}</td>
 					<td>
-					{{ range $index, $day := .Weeks }}
-					{{ $time := (index .Times $index)}}
-					$day.Week $time.Time<br>
+					{{ range $i, $data := .Others }}
+					{{ $data.Week  }} {{ $data.Time }}限<br>
 					{{ end }}
 					</td>
 					<td>{{ .ClassRoom }}</td>
