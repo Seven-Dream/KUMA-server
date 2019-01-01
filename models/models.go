@@ -62,6 +62,17 @@ func AllLecture() []Lecture {
 		fmt.Println("------------")
 	}
 
+	// ここはgo routine使ったほうが早くなるはず
+	for i, v := range lecture {
+		o := []Other{}
+		err = db.Model(&v).Related(&o).Error
+		if err != nil {
+			fmt.Println(err)
+		}
+		lecture[i].Others = o
+	}
+	fmt.Println(lecture)
+
 	return lecture
 }
 
