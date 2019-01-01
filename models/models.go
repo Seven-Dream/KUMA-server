@@ -9,7 +9,6 @@ import (
 
 
 func init() {
-/*
 	db, err := open()
 	if err != nil {
 		panic(err)
@@ -30,7 +29,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-*/
 }
 
 // dbとの接続
