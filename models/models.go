@@ -57,7 +57,9 @@ func AllLecture() []Lecture {
 
 	err = db.Find(&lecture).Error
 	if err != nil {
+		fmt.Println("------------")
 		fmt.Println(err)
+		fmt.Println("------------")
 	}
 
 	// ここはgo routine使ったほうが早くなるはず
@@ -74,3 +76,18 @@ func AllLecture() []Lecture {
 	return lecture
 }
 
+func CreateLectureData(l *Lecture) error {
+	db, err := open()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	err = db.Create(l).Error
+	if err != nil {
+		fmt.Println("doesn't insert data")
+		fmt.Println(err)
+		return err
+	} else {
+		return nil
+	}
+}
