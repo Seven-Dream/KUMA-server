@@ -102,9 +102,33 @@ func CreateLectureData(l *Lecture) error {
 	}
 }
 
+func DeleteLectureDataFromId(id int) error {
+	db, err := open()
+  if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	deleteOther := Other{LectureID: id}
+	deleteLecture := Lecture{Id: id}
+
+	err = db.Delete(&deleteLecture).Error
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+	err = db.Debug().Delete(&deleteOther, "lecture_id = ?", id).Error
+
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+	return nil
+}
+  
 func GetLectureDataFromId(id int) (Lecture, error) {
   db, err := open()
-	if err != nil {
+  if err != nil {
 		panic(err)
 	}
 	defer db.Close()

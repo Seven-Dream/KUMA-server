@@ -3,7 +3,9 @@
 	<body>
 		<h1>{{ .subtitle }}</h1>
 		{{ with .id }}
-			<a href="/lecture/delete/{{ . }}">登録削除</a>
+			<form action="/lecture/delete/{{ . }}" method="post">
+				<input type="submit" value="登録削除">
+			</form>
 		{{ end }}
 		<div>
 			<form action="{{ .url }}" method="post">
