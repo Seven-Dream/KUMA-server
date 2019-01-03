@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-  router := gin.Default()
+	router := gin.Default()
 
 	router.Use(ginsession.New())
 	router.Static("/assets", "./assets")
@@ -23,6 +23,10 @@ func main() {
 	router.POST("/lecture/register", c.RegisterLecturePost)
 
 	router.POST("/lecture/delete/:id", c.DeleteLecturePost)
+
+	router.GET("/lecture/show/:id", c.ShowLectureGet)
+  
+	router.GET("/student_event", c.ShowStudentEvent)
 
 	router.GET("/logout", c.LogoutGet)
 
