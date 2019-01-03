@@ -101,3 +101,17 @@ func CreateLectureData(l *Lecture) error {
 		return nil
 	}
 }
+
+// 全ての学生イベント情報を取得
+func GetAllStudentEvent() ([]StudentEvent, error){
+	db, err := open()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	event := []StudentEvent{}
+	err = db.Find(&event).Error
+
+	return event, err
+}
