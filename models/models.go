@@ -91,3 +91,23 @@ func CreateLectureData(l *Lecture) error {
 		return nil
 	}
 }
+
+func GetLectureDataFromId(id int) (Lecture, error) {
+	db, err := open()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	lecture := Lecture{Id: id}
+	o := []Other{}
+
+	err = db.First(&lecture).Related(&o).Error
+	if err != nil {
+		return Lecture{}, err
+	}
+
+	lecture.Others = o
+
+	return lecture, nil
+}
