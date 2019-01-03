@@ -25,6 +25,16 @@ func init() {
 		panic(err)
 	}
 
+	err = db.DropTableIfExists(&StudentEvent{}).Error
+	if err != nil  {
+		panic(err)
+	}
+
+	err = db.CreateTable(&StudentEvent{}).Error
+	if err != nil {
+		panic(err)
+	}
+
 	err = addUserData("", "")
 	if err != nil {
 		panic(err)
@@ -93,13 +103,13 @@ func CreateLectureData(l *Lecture) error {
 }
 
 func GetLectureDataFromId(id int) (Lecture, error) {
-	db, err := open()
+  db, err := open()
 	if err != nil {
 		panic(err)
 	}
 	defer db.Close()
-
-	lecture := Lecture{Id: id}
+  
+  lecture := Lecture{Id: id}
 	o := []Other{}
 
 	err = db.First(&lecture).Related(&o).Error
@@ -110,4 +120,18 @@ func GetLectureDataFromId(id int) (Lecture, error) {
 	lecture.Others = o
 
 	return lecture, nil
+}
+
+// 全ての学生イベント情報を取得
+func GetAllStudentEvent() ([]StudentEvent, error){
+	db, err := open()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	event := []StudentEvent{}
+	err = db.Find(&event).Error
+
+	return event, err
 }
