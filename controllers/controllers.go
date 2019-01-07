@@ -4,11 +4,15 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-session/gin-session"
 
+	"fmt"
 	"net/http"
 	"encoding/hex"
 	"crypto/sha256"
 	"errors"
 	"strconv"
+	"strings"
+	"path/filepath"
+	"os"
 
 	m "KUMA-server/models"
 )
@@ -106,5 +110,74 @@ func isEmptyKey(c *gin.Context, key string) (string, bool) {
 		return "", false
 	} else {
 		return value, true
+	}
+}
+
+func getStudentEventFromPost(c *gin.Context) (m.StudentEvent, bool) {
+	isAllPostDataExist := true
+
+	// 指定しているkeyに対応した値がpostされいるか
+	eventName, ok := isEmptyKey(c, "name")
+	if !ok {
+		isAllPostDataExist = false
+	}
+	date, ok := isEmptyKey(c, "date")
+	if !ok {
+		isAllPostDataExist = false
+	}
+
+	// 日付のを分割し、year -> month -> day
+	splitedDate := strings.Split(date, "-")
+
+	year, err := strconv.Atoi(splitedDate[0])
+	if err != nil {
+		isAllPostDataExist = false
+	}
+	month, err := strconv.Atoi(splitedDate[1])
+	if err != nil {
+		isAllPostDataExist = false
+	}
+	day, err := strconv.Atoi(splitedDate[2])
+	if err != nil {
+		isAllPostDataExist = false
+	}
+
+	// create StudentEvent struct
+	studentEvent := m.StudentEvent{Name: eventName, Year: year, Month: month, Day: day, Date: date}
+
+	if !isAllPostDataExist {
+		return studentEvent, isAllPostDataExist
+	}
+
+	// pdfの確認
+	pdf, err := c.FormFile("pdf")
+	if err != nil {
+		return studentEvent, isAllPostDataExist
+	}
+
+	// 拡張子の確認
+	filename := filepath.Base(pdf.Filename)
+	pos := strings.LastIndex(filename, ".")
+	extension := filename[pos:]
+	if extension != ".pdf" {
+		return studentEvent, isAllPostDataExist
+	}
+
+	// pdfが存在するとサーバに作成
+	saveFliePath := "./assets/img/" + filename
+	fd, err := os.Create(saveFliePath)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fd.Close()
+	}
+	fmt.Println("---------")
+	err = c.SaveUploadedFile(pdf, saveFliePath)
+	if err != nil {
+		fmt.Println(err)
+		return studentEvent, isAllPostDataExist
+	} else {
+		studentEvent.Url = filename
+		return studentEvent, isAllPostDataExist
 	}
 }
