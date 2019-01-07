@@ -25,8 +25,10 @@ func main() {
 	router.POST("/lecture/delete/:id", c.DeleteLecturePost)
 
 	router.GET("/lecture/show/:id", c.ShowLectureGet)
-  
+
 	router.GET("/student_event", c.ShowStudentEvent)
+	router.GET("/student_event/register", c.RegisterStudentEventGet)
+	router.POST("/student_event/register", c.RegisterStudentEventPost)
 
 	router.GET("/logout", c.LogoutGet)
 
