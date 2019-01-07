@@ -2,31 +2,33 @@ package models
 
 
 type User struct {
-	Id	string	`gorm:"type:varchar(64);primary_key;not null"`
-	Password	string	`gorm:"type:char(64);not null"`
+	Id       string `gorm:"type:varchar(64);primary_key;not null"`
+	Password string `gorm:"type:char(64);not null"`
 }
 
 type Lecture struct {
-	Id	int
-	LectureName	string
-	Teachar	string
-	ClassRoom	string
-	Year	int
-	Quarter	int
-	Others	[]Other
+	Id          int
+	LectureName string
+	Teachar     string
+	ClassRoom   string
+	Year        int
+	Quarter     int
+	Others      []Other
 }
 
 type Other struct {
-	LectureID	int
-	Week	string
-	Time	int
+	LectureID int
+	Week      string
+	Time      int
 }
 
 type StudentEvent struct {
-	Id		int
-	Name	string
-	Year	int
-	Month	int
-	Day		int
-	Note	string	`gorm:"type:text"`
+	Id    int
+	Name  string
+	Year  int
+	Month int
+	Day   int
+	Url   string
+	Date  string
 }
+
