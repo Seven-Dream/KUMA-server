@@ -104,7 +104,7 @@ func CreateLectureData(l *Lecture) error {
 
 func DeleteLectureDataFromId(id int) error {
 	db, err := open()
-  if err != nil {
+	if err != nil {
 		panic(err)
 	}
 	defer db.Close()
@@ -125,15 +125,15 @@ func DeleteLectureDataFromId(id int) error {
 	}
 	return nil
 }
-  
+
 func GetLectureDataFromId(id int) (Lecture, error) {
-  db, err := open()
-  if err != nil {
+	db, err := open()
+	if err != nil {
 		panic(err)
 	}
 	defer db.Close()
-  
-  lecture := Lecture{Id: id}
+
+	lecture := Lecture{Id: id}
 	o := []Other{}
 
 	err = db.First(&lecture).Related(&o).Error
@@ -146,16 +146,3 @@ func GetLectureDataFromId(id int) (Lecture, error) {
 	return lecture, nil
 }
 
-// 全ての学生イベント情報を取得
-func GetAllStudentEvent() ([]StudentEvent, error){
-	db, err := open()
-	if err != nil {
-		panic(err)
-	}
-	defer db.Close()
-
-	event := []StudentEvent{}
-	err = db.Find(&event).Error
-
-	return event, err
-}
