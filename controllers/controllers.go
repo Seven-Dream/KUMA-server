@@ -177,7 +177,7 @@ func getStudentEventFromPost(c *gin.Context) (m.StudentEvent, bool) {
 		fmt.Println(err)
 		return studentEvent, isAllPostDataExist
 	} else {
-		studentEvent.Url = filename
+		studentEvent.Url = saveFliePath
 		return studentEvent, isAllPostDataExist
 	}
 }
