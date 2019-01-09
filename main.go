@@ -29,6 +29,7 @@ func main() {
 	router.GET("/student_event", c.ShowStudentEvent)
 	router.GET("/student_event/register", c.RegisterStudentEventGet)
 	router.POST("/student_event/register", c.RegisterStudentEventPost)
+	router.GET("/student_event/:id", c.EditStudentEvent)
 
 	router.GET("/logout", c.LogoutGet)
 
