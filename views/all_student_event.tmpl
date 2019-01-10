@@ -12,11 +12,11 @@
 			{{ range $i, $v := .student }}
 			<tr>
 				<td>{{ $v.Month }} / {{ $v.Day }}</td>
-				<td><a href="/student_event/{{ $v.Id }}">{{ $v.Name }}</a></td>
+				<td><a href="/student_event/show/{{ $v.Id }}">{{ $v.Name }}</a></td>
 			</tr>
 			{{ end }}
 		</table>
-		<a href="/top">戻る</a>
+		<a href="/student_event">戻る</a>
 		<a href="/student_event/search">検索</a>
 	</body>
 </html>
