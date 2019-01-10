@@ -37,7 +37,7 @@ func DeleteStudentEventFromId(id int) error {
 	}
 	defer db.Close()
 
-	err = db.Delete(&StudentEvent{}, "WHERE id = ?", id).Error
+	err = db.Delete(&StudentEvent{}, "id = ?", id).Error
 	return err
 }
 
