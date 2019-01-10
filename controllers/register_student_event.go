@@ -10,7 +10,7 @@ import (
 )
 
 func RegisterStudentEventGet(c *gin.Context) {
-	_, err := sessionCheckout(c)
+	_, err := sessionCheck(c)
 	if err != nil {
 		c.Redirect(http.StatusSeeOther, "/login")
 		return
@@ -21,7 +21,7 @@ func RegisterStudentEventGet(c *gin.Context) {
 }
 
 func RegisterStudentEventPost(c *gin.Context) {
-	_, err := sessionCheckout(c)
+	_, err := sessionCheck(c)
 	if err != nil {
 		c.Redirect(http.StatusSeeOther, "/login")
 		return
