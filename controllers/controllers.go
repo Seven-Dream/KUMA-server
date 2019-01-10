@@ -54,6 +54,12 @@ func createEncryptedPassword(plainTextPassword string) string {
 	return password
 }
 
+//              example: "./assets/img/file.pdf"
+func deleteFile(filePath string) error {
+	err := os.Remove(filePath)
+	return err
+}
+
 func getLectureDataFromPosted(c *gin.Context) (m.Lecture, bool) {
 	l := m.Lecture{}
 	noneFlag := false
