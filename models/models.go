@@ -15,6 +15,7 @@ func init() {
 	}
 	defer db.Close()
 
+	/*
 	err = db.DropTableIfExists(&User{}, &Lecture{}, &Other{}).Error
 	if err != nil  {
 		panic(err)
@@ -34,11 +35,52 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+	*/
+
+	err = tableInit(&User{})
+	if err != nil {
+		panic(err)
+	}
+	err = tableInit(&Lecture{})
+	if err != nil {
+		panic(err)
+	}
+	err = tableInit(&Other{})
+	if err != nil {
+		panic(err)
+	}
+	err = tableInit(&UniversityEvent{})
+	if err != nil {
+		panic(err)
+	}
+	err = tableInit(&StudentEvent{})
+	if err != nil {
+		panic(err)
+	}
 
 	err = addUserData("", "")
 	if err != nil {
 		panic(err)
 	}
+}
+
+func tableInit(table interface{}) error {
+	db, err := open()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	err = db.DropTableIfExists(table).Error
+	if err != nil {
+		return err
+	}
+
+	err = db.CreateTable(table).Error
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 // dbとの接続
