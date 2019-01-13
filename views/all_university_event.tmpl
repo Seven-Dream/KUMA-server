@@ -1,0 +1,26 @@
+{{ template "header" . }}
+
+	<body>
+		<div>
+			<h1>大学予定一覧</h1>
+			<a href="/university_event/register">新規登録</a>
+		</div>
+		<div>
+			<table>
+				<tr>
+					<th>日付</th>
+					<th>予定名</th>
+				</tr>
+				{{ range $i, $v := .university }}
+				<tr>
+					<td>{{ $v.Month }}/{{ $v.Day }}</td>
+					<td><a href="/university_event/show/{{ $v.Id }}">{{ $v.Name }}</a></td>
+				</tr>
+				{{ end }}
+			</table>
+		</div>
+		<div>
+			<a href="/top">戻る</a>
+		<div>
+	</body>
+</html>
