@@ -44,10 +44,24 @@
 						<th>講義時間</th>
 						<td>
 							{{ range $i, $v := .Others }}
-							<label for="week{{ $i }}">曜日:</label>
-							<input type="text" id="week{{ $i }}" name="week{{ $i }}" value="{{ $v.Week }}">
-							<label for="time{{ $i }}">時限:</label>
-							<input type="text" id="time{{ $i }}" name="time{{ $i }}" value="{{ $v.Time }}">
+							<select name="week{{ $i }}">
+							<option>選択してください</option>
+							<option value="1" {{ if eq 1 $v.Week }} selected {{ end }}>月曜日</option>
+							<option value="2" {{ if eq 2 $v.Week }} selected {{ end }}>火曜日</option>
+							<option value="3" {{ if eq 3 $v.Week }} selected {{ end }}>水曜日</option>
+							<option value="4" {{ if eq 4 $v.Week }} selected {{ end }}>木曜日</option>
+							<option value="5" {{ if eq 5 $v.Week }} selected {{ end }}>金曜日</option>
+							<option value="6" {{ if eq 6 $v.Week }} selected {{ end }}>土曜日</option>
+							</select>
+
+							<select name="time{{ $i }}">
+							<option>選択してください</option>
+							<option value="1" {{ if eq 1 $v.Time }} selected {{ end }}>1限</option>
+							<option value="2" {{ if eq 2 $v.Time }} selected {{ end }}>2限</option>
+							<option value="3" {{ if eq 3 $v.Time }} selected {{ end }}>3限</option>
+							<option value="4" {{ if eq 4 $v.Time }} selected {{ end }}>4限</option>
+							<option value="5" {{ if eq 5 $v.Time }} selected {{ end }}>5限</option>
+							</select>
 							<input type="hidden" name="other[]" value="{{ $i }}">
 							{{ end }}
 						</td>

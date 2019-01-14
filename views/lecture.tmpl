@@ -21,7 +21,7 @@
 					<td>{{ .Quarter }}</td>
 					<td>
 					{{ range $i, $data := .Others }}
-					{{ $data.Week  }} {{ $data.Time }}限<br>
+					{{ $data.WeekString  }} {{ $data.Time }}限<br>
 					{{ end }}
 					</td>
 					<td>{{ .ClassRoom }}</td>

@@ -17,9 +17,10 @@ type Lecture struct {
 }
 
 type Other struct {
-	LectureID int
-	Week      string
-	Time      int
+	LectureID  int
+	Week       int
+	Time       int
+	WeekString string
 }
 
 type UniversityEvent struct {

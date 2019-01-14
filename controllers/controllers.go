@@ -95,12 +95,16 @@ func getLectureDataFromPosted(c *gin.Context) (m.Lecture, bool) {
 		weekKey := "week"+v
 		timeKey := "time"+v
 
-		week, okw := isEmptyKey(c, weekKey)
+		weekIdStr, okw := isEmptyKey(c, weekKey)
 		timeStr, okt := isEmptyKey(c, timeKey)
-		time, err := strconv.Atoi(timeStr)
-		if okw && okt && err == nil {
+		week, errw := strconv.Atoi(weekIdStr)
+		time, errt := strconv.Atoi(timeStr)
+
+		weekStr := fromNumberToWeek(week)
+
+		if okw && okt && errw == nil && errt == nil{
 			otherEmptyFlag = false
-			o = append(o, m.Other{Week: week, Time: time})
+			o = append(o, m.Other{Week: week, Time: time, WeekString: weekStr})
 		}
 	}
 	if noneFlag || otherEmptyFlag {
