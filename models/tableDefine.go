@@ -22,6 +22,16 @@ type Other struct {
 	Time      int
 }
 
+type UniversityEvent struct {
+	Id      int
+	Name    string
+	Year    int
+	Month   int
+	Day     int
+	Comment string `gorm"type:text"`
+	Date    string
+}
+
 type StudentEvent struct {
 	Id    int
 	Name  string

@@ -26,6 +26,13 @@ func main() {
 
 	router.GET("/lecture/show/:id", c.ShowLectureGet)
 
+	router.GET ("/university_event",            c.ShowUniversityEvent)
+	router.GET ("/university_event/register",   c.RegisterUniversityEventGet)
+	router.POST("/university_event/register",   c.RegisterUniversityEventPost)
+	router.GET ("/university_event/show/:id",   c.EditUniversityEvent)
+	router.POST("/university_event/change/:id", c.ChangeUniversityEvent)
+	router.POST("/university_event/delete/:id", c.DeleteUniversityEvent)
+
 	router.GET("/student_event", c.ShowStudentEvent)
 	router.GET("/student_event/register", c.RegisterStudentEventGet)
 	router.POST("/student_event/register", c.RegisterStudentEventPost)
