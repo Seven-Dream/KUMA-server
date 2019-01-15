@@ -145,20 +145,29 @@ func getUniversityEventFromPosted(c *gin.Context) (m.UniversityEvent, bool) {
 	if date == "" { allValueExist = false }
 	// commentは空でも可能
 
-	correctFormatDate := true
-	splitedDate := strings.Split(date, "-")
+	var correctFormatDate bool = false
+	var year, month, day int
+	var err error
+	if date != "" {
+		correctFormatDate = true
+		splitedDate := strings.Split(date, "-")
 
-	year, err := strconv.Atoi(splitedDate[0])
-	if err != nil {
-		correctFormatDate = false
-	}
-	month, err := strconv.Atoi(splitedDate[1])
-	if err != nil {
-		correctFormatDate = false
-	}
-	day, err := strconv.Atoi(splitedDate[2])
-	if err != nil {
-		correctFormatDate = false
+		if len(splitedDate) != 3 {
+			correctFormatDate = false
+		} else {
+			year, err = strconv.Atoi(splitedDate[0])
+			if err != nil {
+				correctFormatDate = false
+			}
+			month, err = strconv.Atoi(splitedDate[1])
+			if err != nil {
+				correctFormatDate = false
+			}
+			day, err = strconv.Atoi(splitedDate[2])
+			if err != nil {
+				correctFormatDate = false
+			}
+		}
 	}
 
 	returnUniversityEvent := m.UniversityEvent{}
