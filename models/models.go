@@ -92,7 +92,7 @@ func UserCheckFromIdAndPass(id string, pass string) (string, error) {
 	db, err := open()
 	defer db.Close()
 	user := &User{Id: id, Password: pass}
-	err = db.First(user).Error
+	err = db.Where(user).First(user).Error
 	if err != nil {
 		return "", err
 	}
