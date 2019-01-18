@@ -1,0 +1,34 @@
+{{ template "header" . }}
+	
+	<body>
+		<div>
+			<h1>講義情報一覧</h1>
+			<a href="/lecture/register">新規登録</a>
+		</div>
+		<div>
+			<table border="1">
+				<tr>
+					<th>講義名</th>
+					<th>担当教員</th>
+					<th>学期</th>
+					<th>曜日・時限</th>
+					<th>教室名</th>
+				</tr>
+				{{ range .lecture }}
+				<tr>
+					<td><a href="/lecture/show/{{ .Id }}">{{ .LectureName }}</a></td>
+					<td>{{ .Teachar }}</td>
+					<td>{{ .Quarter }}</td>
+					<td>
+					{{ range $i, $data := .Others }}
+					{{ $data.WeekString  }} {{ $data.Time }}限<br>
+					{{ end }}
+					</td>
+					<td>{{ .ClassRoom }}</td>
+				</tr>
+				{{ end }}
+			</table>
+		</div>
+		<a href="/top">戻る</a>
+	</body>
+</html>

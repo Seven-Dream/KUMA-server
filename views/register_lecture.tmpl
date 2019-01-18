@@ -1,0 +1,82 @@
+{{ template "header" . }}
+
+	<body>
+		<h1>{{ .subtitle }}</h1>
+		{{ with .id }}
+			<form action="/lecture/delete/{{ . }}" method="post">
+				<input type="submit" value="登録削除">
+			</form>
+		{{ end }}
+		<div>
+			<form action="{{ .url }}" method="post">
+				<table>
+				 {{ with .lecture }}
+					<tr>
+						<th>講義名</th>
+						<td><input type="text" value="{{ .LectureName }}" name="name"></td>
+					</tr>
+					<tr>
+						<th>教員名</th>
+						<td><input type="text" value="{{ .Teachar }}" name="teachar"></td>
+					</tr>
+					<tr>
+						<th>開講年度</th>
+						<td><input type="text" value="{{ .Year }}" name="year"></td>
+					</tr>
+					<tr>
+						<th>教室名</th>
+						<td><input type="text" value="{{ .ClassRoom }}" name="room"></td>
+					</tr>
+					<tr>
+						<th>開講学期</th>
+						<td>
+						<select name="quarter">
+						<option value="1" {{ if eq 1 .Quarter }} selected {{ end }}>1Q</option>
+						<option value="2" {{ if eq 2 .Quarter }} selected {{ end }}>2Q</option>
+						<option value="3" {{ if eq 3 .Quarter }} selected {{ end }}>3Q</option>
+						<option value="4" {{ if eq 4 .Quarter }} selected {{ end }}>4Q</option>
+						<option value="5" {{ if eq 5 .Quarter }} selected {{ end }}>1学期</option>
+						<option value="6" {{ if eq 6 .Quarter }} selected {{ end }}>2学期</option>
+						<option value="7" {{ if eq 7 .Quarter }} selected {{ end }}>通年</option>
+						</td>
+					</tr>
+					<tr>
+						<th>講義時間</th>
+						<td>
+							{{ range $i, $v := .Others }}
+							<select name="week{{ $i }}">
+							<option>選択してください</option>
+							<option value="1" {{ if eq 1 $v.Week }} selected {{ end }}>月曜日</option>
+							<option value="2" {{ if eq 2 $v.Week }} selected {{ end }}>火曜日</option>
+							<option value="3" {{ if eq 3 $v.Week }} selected {{ end }}>水曜日</option>
+							<option value="4" {{ if eq 4 $v.Week }} selected {{ end }}>木曜日</option>
+							<option value="5" {{ if eq 5 $v.Week }} selected {{ end }}>金曜日</option>
+							<option value="6" {{ if eq 6 $v.Week }} selected {{ end }}>土曜日</option>
+							</select>
+
+							<select name="time{{ $i }}">
+							<option>選択してください</option>
+							<option value="1" {{ if eq 1 $v.Time }} selected {{ end }}>1限</option>
+							<option value="2" {{ if eq 2 $v.Time }} selected {{ end }}>2限</option>
+							<option value="3" {{ if eq 3 $v.Time }} selected {{ end }}>3限</option>
+							<option value="4" {{ if eq 4 $v.Time }} selected {{ end }}>4限</option>
+							<option value="5" {{ if eq 5 $v.Time }} selected {{ end }}>5限</option>
+							</select>
+							<input type="hidden" name="other[]" value="{{ $i }}">
+							{{ end }}
+						</td>
+					</tr>
+				</table>
+				<div>
+					<a href="/lecture">戻る</a>
+					{{ with .Id }}
+					<input type="submit" value="変更">
+					{{ else }}
+					<input type="submit" value="登録">
+					{{ end }}
+				</div>
+				{{ end }}
+			</form>
+		</div>
+	</body>
+</html>
