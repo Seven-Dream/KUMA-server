@@ -1,27 +1,55 @@
 {{ template "header" . }}
+<style type="text/css">
+.title{
+	text-align:center;
+}
+th{
+	background: #ffe4b5;
+}
+.button{
+	padding: 0.5em 1em;
+	margin: 2em 0;
+	color: #000000;
+	background: #d3d3d3;
+	border-bottom: solid 6px #808080;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 9px;
+}
+#posi-logout{
+	position: relative;
+	left: 40%;
+}
+#posi-back{
+	position: relative;
+	right: 15%;
+	top: 15px;
+}
+</style>
 	</head>
 
 	<body>
-		<div>
-			<h1>大学予定一覧</h1>
-			<a href="/university_event/register">新規登録</a>
-		</div>
-		<div>
-			<table>
-				<tr>
-					<th>日付</th>
-					<th>予定名</th>
-				</tr>
-				{{ range $i, $v := .university }}
-				<tr>
-					<td>{{ $v.Month }}/{{ $v.Day }}</td>
-					<td><a href="/university_event/show/{{ $v.Id }}">{{ $v.Name }}</a></td>
-				</tr>
-				{{ end }}
-			</table>
-		</div>
-		<div>
-			<a href="/top">戻る</a>
-		<div>
+		<center>
+			<div>
+				<h1>大学予定一覧</h1>
+				<a href="/university_event/register" class="button" id="posi-logout">新規登録</a>
+			</div>
+			<div>
+				<table border=1>
+					<tr>
+						<th>日付</th>
+						<th>予定名</th>
+					</tr>
+					{{ range $i, $v := .university }}
+					<tr>
+						<td>{{ $v.Month }}/{{ $v.Day }}</td>
+						<td><a href="/university_event/show/{{ $v.Id }}">{{ $v.Name }}</a></td>
+					</tr>
+					{{ end }}
+				</table>
+			</div>
+			<div>
+				<a href="/top" class="button" id="posi-back">戻る</a>
+			<div>
+		</center>
 	</body>
 </html>

@@ -1,16 +1,51 @@
 {{ template "header" . }}
+<style type="text/css">.title{
+	text-align: center;
+}
+
+.button{
+	padding: 0.5em 1em;
+	margin: 2em 0;
+	color: #000000;
+	background: #d3d3d3;
+	border-bottom: solid 6px #808080;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 9px;
+}
+
+th{
+  background: #98fb98;
+}
+
+.posi-center{
+  width: 80%;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+#posi-right-up{
+  position: fixed;
+	top:3%;
+  left: 80%;
+}
+#posi-button{
+	position: relative;
+	top: 15px;
+}
+</style>
 	</head>
 
 	<body>
-		<h1>{{ .subtitle }}</h1>
+		<h1 class="title">{{ .subtitle }}</h1>
 		{{ with .id }}
 			<form action="/lecture/delete/{{ . }}" method="post">
-				<input type="submit" value="登録削除">
+				<input type="submit" value="登録削除" class="button">
 			</form>
 		{{ end }}
+		<center>
 		<div>
 			<form action="{{ .url }}" method="post">
-				<table>
+				<table border="1">
 				 {{ with .lecture }}
 					<tr>
 						<th>講義名</th>
@@ -42,7 +77,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>講義時間</th>
+						<th rowspan="4">講義時間</th>
 						<td>
 							{{ range $i, $v := .Others }}
 							<select name="week{{ $i }}">
@@ -64,20 +99,22 @@
 							<option value="5" {{ if eq 5 $v.Time }} selected {{ end }}>5限</option>
 							</select>
 							<input type="hidden" name="other[]" value="{{ $i }}">
+							<br>
 							{{ end }}
 						</td>
 					</tr>
 				</table>
 				<div>
-					<a href="/lecture">戻る</a>
+					<a href="/lecture" class="button" id="posi-button">戻る</a>
 					{{ with .Id }}
-					<input type="submit" value="変更">
+					<input type="submit" value="変更" class="button" id="posi-button">
 					{{ else }}
-					<input type="submit" value="登録">
+					<input type="submit" value="登録" class="button" id="posi-button">
 					{{ end }}
 				</div>
 				{{ end }}
 			</form>
 		</div>
+		</center>
 	</body>
 </html>

@@ -1,13 +1,78 @@
 {{ template "header" . }} 
-	</head>
+
+<style type="text/css">
+.title{
+	text-align:center;
+}
+
+#logout{
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #000000;
+  font-weight: 600; 
+  background: #d3d3d3;
+  border-bottom: solid 6px #808080;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 9px;
+  position: relative;
+  left: 85%;
+}
+
+.box5 {
+	 padding: 0.5em 1em;
+	 margin: 2em 0;
+	 font-weight: bold;
+	 border: double 5px #000000;
+}
+div#posi1 {
+	position: fixed;
+	width: 20%;
+	background:#90ee90;
+	height: 150;
+}
+div#posi2-up{
+  position: fixed;
+  left: 33.3%;
+  width: 20%;
+  height: 50;
+  text-align: center;
+  background: #ffe4b5;
+}
+
+div#posi2-down{
+	position: fixed;
+	left: 33.3%;
+	width: 20%;
+	height: 50;
+	top: 200px;
+	text-align: center;
+	background: #ffe4b5;
+}
+
+div#posi4{
+	position: fixed;
+	left: 66.6%;
+	width: 20%;
+	height: 150;
+	background: #ffb6c1;
+}
+
+
+a#manaka{
+	position: relative;
+	top: 15;
+}
+
+</style>
 
 	<body>
+	<h1 class="title">KUMA管理用サーバー</h1>
 		<div>
-			<a href="/logout">ログアウト</a>
+			<a href="/logout" id="logout">ログアウト</a>
 		</div>
 		<div>
 			<!-- 講義状態 -->
-			<div>
+			<div class="box5" id="posi1">
 				<a href="/lecture_search">講義状態</a><br>
 				<ul>
 					<li>休講情報</li>
@@ -16,15 +81,15 @@
 				</ul>
 			</div>
 			<!-- 大学予定 -->
-			<div>
+			<div class="box5" id="posi2-up">
 				<a href="/university_event">大学予定</a>
 			</div>
 			<!-- 講義情報 -->
-			<div>
+			<div class="box5" id="posi2-down">
 				<a href="/lecture">講義情報</a>
 			</div>
 			<!-- 学生イベント広告 -->
-			<div>
+			<div class="box5" id="posi4">
 				<a href="/student_event">学生イベント広告</a>
 			</div>
 		</div>

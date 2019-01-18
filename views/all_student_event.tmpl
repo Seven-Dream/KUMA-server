@@ -1,23 +1,50 @@
 {{ template "header" . }}
+<style type="text/css">
+.title{
+	text-align:center;
+}
+th{
+	background: #ffb6c1;
+}
+.button{
+	padding: 0.5em 1em;
+	margin: 2em 0;
+	color: #000000;
+	background: #d3d3d3;
+	border-bottom: solid 6px #808080;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 9px;
+}
+#posi-logout{
+	position: relative;
+	left: 40%;
+}
+#posi-button{
+	position: relative;
+	top: 15px;
+}
+</style>
 	</head>
 
 	<body>
-		<h1>学生イベント一覧</h1>
-		<a href="/student_event/register">新規登録</a>
-
-		<table>
-			<tr>
-				<th>日付</th>
-				<th>予定名</th>
-			</tr>
-			{{ range $i, $v := .student }}
-			<tr>
-				<td>{{ $v.Month }} / {{ $v.Day }}</td>
-				<td><a href="/student_event/show/{{ $v.Id }}">{{ $v.Name }}</a></td>
-			</tr>
-			{{ end }}
-		</table>
-		<a href="/student_event">戻る</a>
-		<a href="/student_event/search">検索</a>
+		<center>
+			<h1>学生イベント一覧</h1>
+			<a href="/student_event/register" class="button" id="posi-logout">新規登録</a>
+	
+			<table border=1>
+				<tr>
+					<th>日付</th>
+					<th>予定名</th>
+				</tr>
+				{{ range $i, $v := .student }}
+				<tr>
+					<td>{{ $v.Month }} / {{ $v.Day }}</td>
+					<td><a href="/student_event/show/{{ $v.Id }}">{{ $v.Name }}</a></td>
+				</tr>
+				{{ end }}
+			</table>
+			<a href="/student_event" class="button" id="posi-button">戻る</a>
+			<a href="/student_event/search" class="button" id="posi-button">検索</a>
+		</center>
 	</body>
 </html>

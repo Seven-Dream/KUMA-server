@@ -1,44 +1,72 @@
 {{ template "header" . }}
+<style type="text/css">
+.title{
+	text-align:center;
+}
+th{
+	background: #CBFFD3;
+}
+.button{
+	padding: 0.5em 1em;
+	margin: 2em 0;
+	color: #000000;
+	background: #d3d3d3;
+	border-bottom: solid 6px #808080;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 9px;
+}
+#posi-logout{
+	position: relative;
+	left: 40%;
+}
+#posi-back{
+	position: relative;
+	right: 15%;
+	top: 10px;
+}
+</style>
 	</head>
 	
 	<body>
-		<div>
-			<h1>{{ .subtitle }}</h1>
-			{{ with .university.Id }}
-			<form action="/university_event/delete/{{ . }}" method="post">
-				<input type="submit" value="登録削除">
-			</form>
-			{{ end }}
-		</div>
-		<div>
-			<form action="{{ .url }}" method="post">
-				<div>
-					<table>
-					{{ with .university }}
-						<tr>
-							<td>予定名</td>
-							<td><input type="text" name="event_name" value="{{ .Name }}"></td>
-						</tr>
-						<tr>
-							<td>日付</td>
-							<td><input type="date" name="date" value="{{ .Date }}"></td>
-						</tr>
-						<tr>
-							<td>コメント</td>
-							<td><textarea name="comment">{{ .Comment }}</textarea></td>
-						</tr>
-					{{ end }}
-					</table>
-				</div>
-				<div>
-					<a href="/university_event">戻る</a>
-					{{ with .university.Id }}
-					<input type="submit" value="変更">
-					{{ else }}
-					<input type="submit" value="登録">
-					{{ end }}
-				</div>
-			</form>
-		</div>
+		<center>
+			<div>
+				<h1>{{ .subtitle }}</h1>
+				{{ with .university.Id }}
+				<form action="/university_event/delete/{{ . }}" method="post">
+					<input type="submit" value="登録削除" class="button" id="posi-logout">
+				</form>
+				{{ end }}
+			</div>
+			<div>
+				<form action="{{ .url }}" method="post">
+					<div>
+						<table border=1>
+						{{ with .university }}
+							<tr>
+								<th>予定名</th>
+								<td><input type="text" name="event_name" value="{{ .Name }}"></td>
+							</tr>
+							<tr>
+								<th>日付</th>
+								<td><input type="date" name="date" value="{{ .Date }}"></td>
+							</tr>
+							<tr>
+								<th>コメント</th>
+								<td><textarea name="comment">{{ .Comment }}</textarea></td>
+							</tr>
+						{{ end }}
+						</table>
+					</div>
+					<div>
+						<a href="/university_event" class="button">戻る</a>
+						{{ with .university.Id }}
+						<input type="submit" value="変更" class="button">
+						{{ else }}
+						<input type="submit" value="登録" class="button">
+						{{ end }}
+					</div>
+				</form>
+			</div>
+		</center>
 	</body>
 </html>
