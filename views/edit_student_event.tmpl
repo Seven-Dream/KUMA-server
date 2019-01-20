@@ -1,42 +1,83 @@
 {{ template "header" . }}
-	</head>
+ 	<style type="text/css">
+	.title{
+		text-align:center;
+	}
+	th{
+		background: #CBFFD3;
+	}
+	.button{
+		padding: 0.5em 1em;
+		margin: 2em 0;
+		color: #000000;
+		background: #d3d3d3;
+		border-bottom: solid 6px #808080;
+		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+	  border-radius: 9px;
+	}
+	#posi-logout{
+		position: relative;
+		left: 40%;
+	}
+	#posi-back{
+		position: relative;
+		right: 15%;
+		top: 10px;
+	}
+	</style>
+
+       <body>
+                <h1>Kochi University of Technology</h1>
+                <center>
+                        <div>
+                                <form action="" method="post">
+                                        <input name="id" type="text" placeholder="ID"   ><br>
+                                        <input name="pass" type="password" placeholder="PASS"><br>
+                                        <input type="submit" value="Login!">
+                                </form>
+                        </div>
+                </center>
+        </body>
+</html>	</head>
 
 	<body>
-		<div>
-			<h1>{{ .subtitle }}</h1>
-			{{ with .event.Id }}
-				<form action="/student_event/delete/{{ . }}" method="post">
-					<input type="submit" value="登録削除">
+		<center>
+			<div>
+				<h1>{{ .subtitle }}</h1>
+				{{ with .event.Id }}
+					<form action="/student_event/delete/{{ . }}" method="post">
+						<input type="submit" value="登録削除" class="button" id="posi-logout">
+					</form>
+				{{ end }}
+			</div>
+			<div>
+				<form action="{{ .url }}" method="post" enctype="multipart/form-data">
+					<table border=1>
+						{{ with .event }}
+						<tr>
+							<th><label for="name">イベント名</label></th>
+							<td><input type="text" id="name" value="{{ .Name }}" name="name"></td>
+						</tr>
+						<tr>
+							<th><label for="date">日付</label></th>
+							<td><input type="date" id="date" value="{{ .Date }}" name="date"></td>
+						</tr>
+						<tr>
+							<th><label for="pdf">PDF</label></th>
+							<td><input type="file" id="pdf" name="pdf"></td>
+						</tr>
+						{{ end }}
+					</table>
+					<div>
+						<a href="/student_event" class="button">戻る</a>
+						{{ with .event.Id }}
+						<input type="submit" value="変更" class="button">
+						{{ else }}
+						<input type="submit" value="登録" class="button">
+						{{ end }}
+					</div>
 				</form>
-			{{ end }}
-		</div>
-		<div>
-			<form action="{{ .url }}" method="post" enctype="multipart/form-data">
-				<table>
-					{{ with .event }}
-					<tr>
-						<th><label for="name">イベント名</label></th>
-						<td><input type="text" id="name" value="{{ .Name }}" name="name"></td>
-					</tr>
-					<tr>
-						<th><label for="date">日付</label></th>
-						<td><input type="date" id="date" value="{{ .Date }}" name="date"></td>
-					</tr>
-					<tr>
-						<th><label for="pdf">PDF</label></th>
-						<td><input type="file" id="pdf" name="pdf"></td>
-					</tr>
-					{{ end }}
-				</table>
-				<div>
-					<a href="/student_event">戻る</a>
-					{{ with .event.Id }}
-					<input type="submit" value="変更">
-					{{ else }}
-					<input type="submit" value="登録">
-					{{ end }}
-				</div>
-			</form>
+			</center>
 		</div>
 	</body>
 </html>
