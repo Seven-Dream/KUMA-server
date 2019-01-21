@@ -150,3 +150,15 @@ func DeleteTestFromId(id int) error {
 	err = db.Delete(&Test{Id: id}).Error
 	return err
 }
+
+// idから教室変更を削除する
+func DeleteChangeRoomFromId(id int) error {
+	db, err := open()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	err = db.Delete(&ChangeRoom{Id: id}).Error
+	return err
+}
