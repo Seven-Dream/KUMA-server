@@ -1,0 +1,32 @@
+{{ template "header" . }}
+  <body>
+    <div>
+      <h1>検索結果</h1>
+    </div>
+    <div>
+      <table>
+        <tr>
+          <th>講義名</th>
+          <th>担当教員</th>
+          <th>学期</th>
+          <th>曜日・時限</th>
+        </tr>
+        {{ range $i, $v := .lecture }}
+        <tr>
+          <td><a href="/lecture/option/list/{{ $v.Id }}">{{ $v.LectureName }}</a></td>
+          <td>{{ $v.Teachar }}</td>
+          <td>{{ $v.Quarter }}</td>
+          <td>
+          {{ range $i, $v := .Others }}
+          {{ $v.WeekString }}・{{ $v.Time }}限<br>
+          {{ end }}
+          </td>
+        </tr>
+        {{ end }}
+      </table>
+    </div>
+    <div>
+      <a href="/lecture/search">戻る</a>
+    </div>
+  </body>
+</html>

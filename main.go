@@ -21,10 +21,21 @@ func main() {
 
 	router.GET("/lecture/register", c.RegisterLectureGet)
 	router.POST("/lecture/register", c.RegisterLecturePost)
-
 	router.POST("/lecture/delete/:id", c.DeleteLecturePost)
-
 	router.GET("/lecture/show/:id", c.ShowLectureGet)
+
+	router.GET ("/lecture/search",                      c.SearchLecture)
+	router.POST("/lecture/search/result",               c.SearchResultLecture)
+	router.GET ("/lecture/option/list/:id",                  c.ShowLectureOption)
+	router.GET ("/lecture/option/cancel/register/:lectureId",      c.RegisterCancelGet)
+	router.GET ("/lecture/option/test/register/:lectureId",        c.RegisterTestGet)
+	router.GET ("/lecture/option/change_room/register/:lectureId", c.RegisterChangeRoomGet)
+	router.POST("/lecture/option/cancel/register",      c.RegisterCancelPost)
+	router.POST("/lecture/option/test/register",        c.RegisterTestPost)
+	router.POST("/lecture/option/change_room/register", c.RegisterChangeRoomPost)
+	router.GET ("/lecture/option/cancel/show/:id",      c.ShowCancel)
+	router.GET ("/lecture/option/test/show/:id",        c.ShowTest)
+	router.GET ("/lecture/option/change_room/show/:id", c.ShowChangeRoom)
 
 	router.GET ("/university_event",            c.ShowUniversityEvent)
 	router.GET ("/university_event/register",   c.RegisterUniversityEventGet)

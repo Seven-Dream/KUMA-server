@@ -23,6 +23,31 @@ type Other struct {
 	WeekString string
 }
 
+type Test struct {
+	LectureID int
+	Id        int
+	Month     int
+	Day       int
+	ClassRoom string
+	Comment   string `gorm:"type:text"`
+}
+
+type Cancel struct {
+	LectureID int
+	Id        int
+	Month     int
+	Day       int
+	Comment   string `gorm:"type:text"`
+}
+
+type ChangeRoom struct {
+	LectureID int
+	Id        int
+	Month     int
+	Day       int
+	ClassRoom string
+}
+
 type UniversityEvent struct {
 	Id      int
 	Name    string
