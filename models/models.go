@@ -74,6 +74,7 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+	dataCreate()
 }
 
 func tableInit(table interface{}) error {
@@ -200,3 +201,24 @@ func GetLectureDataFromId(id int) (Lecture, error) {
 	return lecture, nil
 }
 
+func DeleteOtherFromId(id int) error {
+	db, err := open()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	err = db.Where("lecture_id = ?", id).Delete(&Other{LectureID: id}).Error
+	return err
+}
+
+func UpdateLectureFromArgment(lecture *Lecture) error {
+	db, err := open()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	err = db.Model(lecture).Updates(lecture).Error
+	return err
+}
