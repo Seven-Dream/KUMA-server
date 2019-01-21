@@ -1,0 +1,30 @@
+{{ template "header" . }}
+  </head>
+  <body>
+    <div>
+      <h1>講義試験情報</h1>
+      <form action="/lecture/option/test/delete/{{ .test.Id }}" method="post">
+        <input type="submit" value="削除">
+      </form>
+    </div>
+    <div>
+      <table>
+        <tr>
+          <th>講義名</th>
+          <td>{{ .name }}</td>
+        </tr>
+        <tr>
+          <th>日付・教室名</th>
+          <td>{{ .test.Month }}/{{ .test.Day }}・{{ .test.ClassRoom }}</td>
+        </tr>
+        <tr>
+          <th>コメント</th>
+          <td>{{ .test.Comment }}</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <a href="/lecture/option/list/{{ .test.LectureID }}">戻る</a>
+    </div>
+  </body>
+</html>
