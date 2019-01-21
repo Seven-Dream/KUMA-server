@@ -74,7 +74,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	dataCreate()
 }
 
 func tableInit(table interface{}) error {
