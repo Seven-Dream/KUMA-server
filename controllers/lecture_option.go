@@ -429,6 +429,41 @@ func DeleteTest(c *gin.Context) {
 	c.Redirect(http.StatusSeeOther, "/lecture/option/list/"+lectureId)
 }
 
+// 教室変更情報の削除
+func DeleteChangeRoom(c *gin.Context) {
+	_, err := sessionCheck(c)
+	if err != nil {
+		c.Redirect(http.StatusSeeOther, "/login")
+		return
+	}
+
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		fmt.Println(err)
+		c.Redirect(http.StatusSeeOther, "/lecture/search")
+		return
+	}
+
+	changeRoom, err := m.GetChangeRoomFromId(id)
+	if err != nil {
+		fmt.Println(err)
+		c.Redirect(http.StatusSeeOther, "/lecture/search")
+	}
+
+	lectureIdStr := changeRoom.LectureID
+	lectureId := strconv.Itoa(lectureIdStr)
+
+	err = m.DeleteChangeRoomFromId(id)
+	if err != nil {
+		fmt.Println(err)
+		c.Redirect(http.StatusSeeOther, "/lecture/option/list/"+lectureId)
+		return
+	}
+
+	c.Redirect(http.StatusSeeOther, "/lecture/option/list/"+lectureId)
+}
+
 func getSearchLectureFromPosted(c *gin.Context) m.Lecture {
 	name       := c.PostForm("name")
 	teachar    := c.PostForm("teachar")
