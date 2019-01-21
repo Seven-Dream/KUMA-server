@@ -59,5 +59,12 @@ func main() {
 
 	router.GET("/top", c.TopGet)
 
+	router.GET("/api/lecture",     c.LectureAPI)
+	router.GET("/api/test",        c.TestAPI)
+	router.GET("/api/cancel",      c.CancelAPI)
+	router.GET("/api/change_room", c.ChangeRoomAPI)
+	router.GET("/api/university",  c.UniversityAPI)
+	router.GET("/api/student",     c.StudentAPI)
+
 	router.Run(":8080")
 }
