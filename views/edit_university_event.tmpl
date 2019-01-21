@@ -1,32 +1,5 @@
 {{ template "header" . }}
-	<style type="text/css">
-		.title{
-			text-align:center;
-		}
-		th{
-			background: #ffe4b5;
-		}
-		.button{
-			padding: 0.5em 1em;
-			margin: 2em 0;
-			color: #000000;
-			background: #d3d3d3;
-			border-bottom: solid 6px #808080;
-			box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-			border-radius: 9px;
-		}
-		#posi-logout{
-			position: relative;
-			left: 40%;
-		}
-		#posi-back{
-			position: relative;
-			right: 15%;
-			top: 10px;
-		}
-		</style>
 	</head>
-	
 	<body>
 		<center>
 			<div>
@@ -43,15 +16,15 @@
 						<table border=1>
 						{{ with .university }}
 							<tr>
-								<th>予定名</th>
+								<th id="unv">予定名</th>
 								<td><input type="text" name="event_name" value="{{ .Name }}"></td>
 							</tr>
 							<tr>
-								<th>日付</th>
+								<th id="unv">日付</th>
 								<td><input type="date" name="date" value="{{ .Date }}"></td>
 							</tr>
 							<tr>
-								<th>コメント</th>
+								<th id="unv">コメント</th>
 								<td><textarea name="comment">{{ .Comment }}</textarea></td>
 							</tr>
 						{{ end }}

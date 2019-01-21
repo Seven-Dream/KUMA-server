@@ -1,30 +1,4 @@
 {{ template "header" . }}
-		<style type="text/css">
-			.title{
-				text-align:center;
-			}
-			th{
-				background: #ffb6c1;
-			}
-			.button{
-				padding: 0.5em 1em;
-				margin: 2em 0;
-				color: #000000;
-				background: #d3d3d3;
-				border-bottom: solid 6px #808080;
-				box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-				border-radius: 9px;
-			}
-			#posi-logout{
-				position: relative;
-				left: 40%;
-			}
-			#posi-back{
-				position: relative;
-				right: 15%;
-				top: 10px;
-			}
-		</style>
 	</head>
 	<body>
 		<center>
@@ -41,15 +15,15 @@
 					<table border=1>
 						{{ with .event }}
 						<tr>
-							<th><label for="name">イベント名</label></th>
+							<th id="std"><label for="name">イベント名</label></th>
 							<td><input type="text" id="name" value="{{ .Name }}" name="name"></td>
 						</tr>
 						<tr>
-							<th><label for="date">日付</label></th>
+							<th id="std"><label for="date">日付</label></th>
 							<td><input type="date" id="date" value="{{ .Date }}" name="date"></td>
 						</tr>
 						<tr>
-							<th><label for="pdf">PDF</label></th>
+							<th id="std">><label for="pdf">PDF</label></th>
 							<td><input type="file" id="pdf" name="pdf"></td>
 						</tr>
 						{{ end }}

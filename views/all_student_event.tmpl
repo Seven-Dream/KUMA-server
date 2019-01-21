@@ -1,29 +1,4 @@
 {{ template "header" . }}
-	<style type="text/css">
-		.title{
-			text-align:center;
-		}
-		th{
-			background: #ffb6c1;
-		}
-		.button{
-			padding: 0.5em 1em;
-			margin: 2em 0;
-			color: #000000;
-			background: #d3d3d3;
-			border-bottom: solid 6px #808080;
-			box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-			border-radius: 9px;
-		}
-		#posi-logout{
-			position: relative;
-			left: 40%;
-		}
-		#posi-button{
-			position: relative;
-			top: 15px;
-		}
-		</style>
 	</head>
 
 	<body>
@@ -33,8 +8,8 @@
 	
 			<table border=1>
 				<tr>
-					<th>日付</th>
-					<th>予定名</th>
+					<th id="std">日付</th>
+					<th id="std">予定名</th>
 				</tr>
 				{{ range $i, $v := .student }}
 				<tr>

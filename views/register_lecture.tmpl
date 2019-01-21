@@ -1,35 +1,4 @@
 {{ template "header" . }}
-		<style type="text/css">
-			.title{
-				text-align: center;
-			}
-			.button{
-				padding: 0.5em 1em;
-				margin: 2em 0;
-				color: #000000;
-				background: #d3d3d3;
-				border-bottom: solid 6px #808080;
-				box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-				border-radius: 9px;
-			}
-			th{
-				background: #ffe4b6;
-			}
-			.posi-center{
-				width: 80%;
-				margin: 0 auto;
-				max-width: 500px;
-			}
-			#posi-right-up{
-				position: fixed;
-				top:3%;
-				left: 80%;
-			}
-			#posi-button{
-				position: relative;
-				top: 15px;
-			}
-		</style>
 	</head>
 
 	<body>
@@ -45,23 +14,23 @@
 				<table border="1">
 				 {{ with .lecture }}
 					<tr>
-						<th>講義名</th>
+						<th id="lec">講義名</th>
 						<td><input type="text" value="{{ .LectureName }}" name="name"></td>
 					</tr>
 					<tr>
-						<th>教員名</th>
+						<th id="lec">教員名</th>
 						<td><input type="text" value="{{ .Teachar }}" name="teachar"></td>
 					</tr>
 					<tr>
-						<th>開講年度</th>
+						<th id="lec">開講年度</th>
 						<td><input type="text" value="{{ .Year }}" name="year"></td>
 					</tr>
 					<tr>
-						<th>教室名</th>
+						<th id="lec">教室名</th>
 						<td><input type="text" value="{{ .ClassRoom }}" name="room"></td>
 					</tr>
 					<tr>
-						<th>開講学期</th>
+						<th id="lec">開講学期</th>
 						<td>
 						<select name="quarter">
 						<option value="1" {{ if eq 1 .Quarter }} selected {{ end }}>1Q</option>
@@ -74,7 +43,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th rowspan="4">講義時間</th>
+						<th rowspan="4" id="lec">講義時間</th>
 						<td>
 							{{ range $i, $v := .Others }}
 							<select name="week{{ $i }}">
