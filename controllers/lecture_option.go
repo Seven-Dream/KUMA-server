@@ -360,6 +360,41 @@ func ShowChangeRoom(c *gin.Context) {
 	render(c, "show_change_room.tmpl", gin.H{"title": "Change Room Info Page", "room": changeRoom, "name": lecture.LectureName})
 }
 
+// 試験情報の削除
+func DeleteTest(c *gin.Context) {
+	_, err := sessionCheck(c)
+	if err != nil {
+		c.Redirect(http.StatusSeeOther, "/login")
+		return
+	}
+
+	idStr := c.Param("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		fmt.Println(err)
+		c.Redirect(http.StatusSeeOther, "/lecture/search")
+		return
+	}
+
+	test, err := m.GetTestFromId(id)
+	if err != nil {
+		fmt.Println(err)
+		c.Redirect(http.StatusSeeOther, "/lecture/search")
+	}
+
+	lectureIdStr := test.LectureID
+	lectureId := strconv.Itoa(lectureIdStr)
+
+	err = m.DeleteTestFromId(id)
+	if err != nil {
+		fmt.Println(err)
+		c.Redirect(http.StatusSeeOther, "/lecture/option/list/"+lectureId)
+		return
+	}
+
+	c.Redirect(http.StatusSeeOther, "/lecture/option/list/"+lectureId)
+}
+
 func getSearchLectureFromPosted(c *gin.Context) m.Lecture {
 	name       := c.PostForm("name")
 	teachar    := c.PostForm("teachar")
