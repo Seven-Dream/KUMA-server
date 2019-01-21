@@ -162,3 +162,40 @@ func DeleteChangeRoomFromId(id int) error {
 	err = db.Delete(&ChangeRoom{Id: id}).Error
 	return err
 }
+
+// 全ての休講情報を取得
+func GetAllCancel() ([]Cancel, error) {
+	db, err := open()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	cancel := []Cancel{}
+	err = db.Find(&cancel).Error
+	return cancel, err
+}
+// 全ての試験情報を取得
+func GetAllTest() ([]Test, error) {
+	db, err := open()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	test := []Test{}
+	err = db.Find(&test).Error
+	return test, err
+}
+// 全ての教室変更情報を取得
+func GetAllChangeRoom() ([]ChangeRoom, error) {
+	db, err := open()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	changeRoom := []ChangeRoom{}
+	err = db.Find(&changeRoom).Error
+	return changeRoom, err
+}
