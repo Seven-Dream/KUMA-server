@@ -3,6 +3,9 @@
   <body>
     <div>
       <h1>講義試験情報</h1>
+      <form action="/lecture/option/test/delete/{{ .test.Id }}" method="post">
+        <input type="submit" value="削除">
+      </form>
     </div>
     <div>
       <table>
