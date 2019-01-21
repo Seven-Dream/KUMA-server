@@ -360,6 +360,40 @@ func ShowChangeRoom(c *gin.Context) {
 	render(c, "show_change_room.tmpl", gin.H{"title": "Change Room Info Page", "room": changeRoom, "name": lecture.LectureName})
 }
 
+// 休講情報の削除
+func DeleteCancel(c *gin.Context) {
+	_, err := sessionCheck(c)
+	if err != nil {
+		c.Redirect(http.StatusSeeOther, "/login")
+		return
+	}
+
+	idStr := c.Param("id")
+	id, err :=strconv.Atoi(idStr)
+	if err != nil {
+		fmt.Println(err)
+		c.Redirect(http.StatusSeeOther, "/lecture/search")
+		return
+	}
+	cancel, err := m.GetCancelFromId(id)
+	if err != nil {
+		fmt.Println(err)
+		c.Redirect(http.StatusSeeOther, "/lecture/search")
+	}
+
+	lectureIdStr := cancel.LectureID
+	lectureId := strconv.Itoa(lectureIdStr)
+
+	err = m.DeleteCancelFromId(id)
+	if err != nil {
+		fmt.Println(err)
+		c.Redirect(http.StatusSeeOther, "/lecture/option/list/"+lectureId)
+		return
+	}
+
+	c.Redirect(http.StatusSeeOther, "/lecture/option/list/"+lectureId)
+}
+
 // 試験情報の削除
 func DeleteTest(c *gin.Context) {
 	_, err := sessionCheck(c)

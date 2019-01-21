@@ -127,6 +127,18 @@ func GetChangeRoomFromId(id int) (ChangeRoom, error) {
 	return returnChangeRoom, err
 }
 
+// idから休講情報を削除する
+func DeleteCancelFromId(id int) error {
+	db, err := open()
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	err = db.Delete(&Cancel{Id: id}).Error
+	return err
+}
+
 // idから試験情報を削除する
 func DeleteTestFromId(id int) error {
 	db, err := open()

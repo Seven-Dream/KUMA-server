@@ -3,9 +3,12 @@
   <body>
     <div>
       <h1>講義休講情報</h1>
+      <form action="/lecture/option/cancel/delete/{{ .cancel.Id }}" method="post">
+        <input type="submit" value="削除">
+      </form>
     </div>
     <div>
-      <table>
+      <table border="1">
         <tr>
           <th>講義名</th>
           <td>{{ .name }}</td>
