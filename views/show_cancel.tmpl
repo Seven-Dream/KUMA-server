@@ -1,0 +1,27 @@
+{{ template "header" . }}
+  </head>
+  <body>
+    <div>
+      <h1>講義休講情報</h1>
+    </div>
+    <div>
+      <table>
+        <tr>
+          <th>講義名</th>
+          <td>{{ .name }}</td>
+        </tr>
+        <tr>
+          <th>日付</th>
+          <td>{{ .cancel.Month }}/{{ .cancel.Day }}</td>
+        </tr>
+        <tr>
+          <th>コメント</th>
+          <td>{{ .cancel.Comment }}</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <a href="/lecture/option/list/{{ .cancel.LectureID }}">戻る</a>
+    </div>
+  </body>
+</html>
