@@ -3,6 +3,9 @@
   <body>
     <div>
       <h1>教室変更情報</h1>
+      <form action="/lecture/option/change_room/delete/{{ .room.Id }}" method="post">
+        <input type="submit" value="削除">
+      </form>
     </div>
     <div>
       <table>
