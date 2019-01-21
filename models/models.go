@@ -57,11 +57,24 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+	err = tableInit(&Test{})
+	if err != nil {
+		panic(err)
+	}
+	err = tableInit(&Cancel{})
+	if err != nil {
+		panic(err)
+	}
+	err =  tableInit(&ChangeRoom{})
+	if err != nil {
+		panic(err)
+	}
 
 	err = addUserData("", "")
 	if err != nil {
 		panic(err)
 	}
+	dataCreate()
 }
 
 func tableInit(table interface{}) error {
