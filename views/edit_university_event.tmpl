@@ -1,43 +1,45 @@
 {{ template "header" . }}
-	
+	</head>
 	<body>
-		<div>
-			<h1>{{ .subtitle }}</h1>
-			{{ with .university.Id }}
-			<form action="/university_event/delete/{{ . }}" method="post">
-				<input type="submit" value="登録削除">
-			</form>
-			{{ end }}
-		</div>
-		<div>
-			<form action="{{ .url }}" method="post">
-				<div>
-					<table>
-					{{ with .university }}
-						<tr>
-							<td>予定名</td>
-							<td><input type="text" name="event_name" value="{{ .Name }}"></td>
-						</tr>
-						<tr>
-							<td>日付</td>
-							<td><input type="date" name="date" value="{{ .Date }}"></td>
-						</tr>
-						<tr>
-							<td>コメント</td>
-							<td><textarea name="comment">{{ .Comment }}</textarea></td>
-						</tr>
-					{{ end }}
-					</table>
-				</div>
-				<div>
-					<a href="/university_event">戻る</a>
-					{{ with .university.Id }}
-					<input type="submit" value="変更">
-					{{ else }}
-					<input type="submit" value="登録">
-					{{ end }}
-				</div>
-			</form>
-		</div>
+		<center>
+			<div>
+				<h1>{{ .subtitle }}</h1>
+				{{ with .university.Id }}
+				<form action="/university_event/delete/{{ . }}" method="post">
+					<input type="submit" value="登録削除" class="button" id="posi-logout">
+				</form>
+				{{ end }}
+			</div>
+			<div>
+				<form action="{{ .url }}" method="post">
+					<div>
+						<table border=1>
+						{{ with .university }}
+							<tr>
+								<th id="unv">予定名</th>
+								<td><input type="text" name="event_name" value="{{ .Name }}"></td>
+							</tr>
+							<tr>
+								<th id="unv">日付</th>
+								<td><input type="date" name="date" value="{{ .Date }}"></td>
+							</tr>
+							<tr>
+								<th id="unv">コメント</th>
+								<td><textarea name="comment">{{ .Comment }}</textarea></td>
+							</tr>
+						{{ end }}
+						</table>
+					</div>
+					<div>
+						<a href="/university_event" class="button">戻る</a>
+						{{ with .university.Id }}
+						<input type="submit" value="変更" class="button">
+						{{ else }}
+						<input type="submit" value="登録" class="button">
+						{{ end }}
+					</div>
+				</form>
+			</div>
+		</center>
 	</body>
 </html>

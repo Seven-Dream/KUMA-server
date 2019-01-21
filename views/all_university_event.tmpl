@@ -1,26 +1,28 @@
 {{ template "header" . }}
-
+	</head>
 	<body>
-		<div>
-			<h1>大学予定一覧</h1>
-			<a href="/university_event/register">新規登録</a>
-		</div>
-		<div>
-			<table>
-				<tr>
-					<th>日付</th>
-					<th>予定名</th>
-				</tr>
-				{{ range $i, $v := .university }}
-				<tr>
-					<td>{{ $v.Month }}/{{ $v.Day }}</td>
-					<td><a href="/university_event/show/{{ $v.Id }}">{{ $v.Name }}</a></td>
-				</tr>
-				{{ end }}
-			</table>
-		</div>
-		<div>
-			<a href="/top">戻る</a>
-		<div>
+		<center>
+			<div>
+				<h1>大学予定一覧</h1>
+				<a href="/university_event/register" class="button" id="posi-logout">新規登録</a>
+			</div>
+			<div>
+				<table border=1>
+					<tr>
+						<th id="unv">日付</th>
+						<th id="unv">予定名</th>
+					</tr>
+					{{ range $i, $v := .university }}
+					<tr>
+						<td>{{ $v.Month }}/{{ $v.Day }}</td>
+						<td><a href="/university_event/show/{{ $v.Id }}">{{ $v.Name }}</a></td>
+					</tr>
+					{{ end }}
+				</table>
+			</div>
+			<div>
+				<a href="/top" class="button" id="posi-back">戻る</a>
+			<div>
+		</center>
 	</body>
 </html>

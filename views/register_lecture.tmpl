@@ -1,34 +1,36 @@
 {{ template "header" . }}
+	</head>
 
 	<body>
-		<h1>{{ .subtitle }}</h1>
+		<h1 class="title">{{ .subtitle }}</h1>
 		{{ with .id }}
 			<form action="/lecture/delete/{{ . }}" method="post">
-				<input type="submit" value="登録削除">
+				<input type="submit" value="登録削除" class="button">
 			</form>
 		{{ end }}
+		<center>
 		<div>
 			<form action="{{ .url }}" method="post">
-				<table>
+				<table border="1">
 				 {{ with .lecture }}
 					<tr>
-						<th>講義名</th>
+						<th id="lec">講義名</th>
 						<td><input type="text" value="{{ .LectureName }}" name="name"></td>
 					</tr>
 					<tr>
-						<th>教員名</th>
+						<th id="lec">教員名</th>
 						<td><input type="text" value="{{ .Teachar }}" name="teachar"></td>
 					</tr>
 					<tr>
-						<th>開講年度</th>
+						<th id="lec">開講年度</th>
 						<td><input type="text" value="{{ .Year }}" name="year"></td>
 					</tr>
 					<tr>
-						<th>教室名</th>
+						<th id="lec">教室名</th>
 						<td><input type="text" value="{{ .ClassRoom }}" name="room"></td>
 					</tr>
 					<tr>
-						<th>開講学期</th>
+						<th id="lec">開講学期</th>
 						<td>
 						<select name="quarter">
 						<option value="1" {{ if eq 1 .Quarter }} selected {{ end }}>1Q</option>
@@ -41,7 +43,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>講義時間</th>
+						<th rowspan="4" id="lec">講義時間</th>
 						<td>
 							{{ range $i, $v := .Others }}
 							<select name="week{{ $i }}">
@@ -63,20 +65,22 @@
 							<option value="5" {{ if eq 5 $v.Time }} selected {{ end }}>5限</option>
 							</select>
 							<input type="hidden" name="other[]" value="{{ $i }}">
+							<br>
 							{{ end }}
 						</td>
 					</tr>
 				</table>
 				<div>
-					<a href="/lecture">戻る</a>
+					<a href="/lecture" class="button" id="posi-button">戻る</a>
 					{{ with .Id }}
-					<input type="submit" value="変更">
+					<input type="submit" value="変更" class="button" id="posi-button">
 					{{ else }}
-					<input type="submit" value="登録">
+					<input type="submit" value="登録" class="button" id="posi-button">
 					{{ end }}
 				</div>
 				{{ end }}
 			</form>
 		</div>
+		</center>
 	</body>
 </html>
