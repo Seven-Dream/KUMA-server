@@ -97,7 +97,13 @@ func tableInit(table interface{}) error {
 
 // dbとの接続
 func open() (*gorm.DB, error){
-	return gorm.Open("postgres", "host=localhost user=tetsuya dbname=kuma sslmode=disable")
+	var connect string
+	if password == "" {
+		connect = fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable", hostname, user, dbname)
+	} else {
+		connect = fmt.Sprintf("host=%s user=%s dbname=%s password=%s sslmode=disable", hostname, user, dbname, password)
+	}
+	return gorm.Open("postgres", connect)
 }
 
 func UserCheckFromIdAndPass(id string, pass string) (string, error) {
