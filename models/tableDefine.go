@@ -7,64 +7,64 @@ type User struct {
 }
 
 type Lecture struct {
-	Id          int
-	LectureName string
-	Teachar     string
-	ClassRoom   string
-	Year        int
-	Quarter     int
-	Others      []Other
+	Id          int     `json:"lecture_id" gorm:"not null"`
+	LectureName string  `json:"lecture_name" gorm:"not null"`
+	Teachar     string  `json:"teacher"`
+	ClassRoom   string  `json:"classroom"`
+	Year        int     `json:"year"`
+	Quarter     int     `json:"quarter"`
+	Others      []Other `json:"week"`
 }
 
 type Other struct {
-	LectureID  int
-	Week       int
-	Time       int
+	LectureID  int    `json:"lecture_id"`
+	Week       int    `json:"week"`
+	Time       int    `json:"period"`
 	WeekString string
 }
 
 type Test struct {
-	LectureID int
+	LectureID int    `json:"lecture_id"`
 	Id        int
-	Month     int
-	Day       int
-	ClassRoom string
-	Comment   string `gorm:"type:text"`
+	Month     int    `json:"month"`
+	Day       int    `json:"day"`
+	ClassRoom string `json:"classroom"`
+	Comment   string `json:"comment" gorm:"type:text"`
 }
 
 type Cancel struct {
-	LectureID int
+	LectureID int    `json:"lecture_id"`
 	Id        int
-	Month     int
-	Day       int
-	Comment   string `gorm:"type:text"`
+	Month     int    `json:"month"`
+	Day       int    `json:"day"`
+	Comment   string `json:"comment" gorm:"type:text"`
 }
 
 type ChangeRoom struct {
-	LectureID int
+	LectureID int    `json:"lecture_id"`
 	Id        int
-	Month     int
-	Day       int
-	ClassRoom string
+	Month     int    `json:"month"`
+	Day       int    `json:"day"`
+	ClassRoom string `json:"classroom"`
 }
 
 type UniversityEvent struct {
-	Id      int
-	Name    string
-	Year    int
-	Month   int
-	Day     int
-	Comment string `gorm"type:text"`
+	Id      int    `json:"id"`
+	Name    string `json:"event_name"`
+	Year    int    `json:"year"`
+	Month   int    `json:"month"`
+	Day     int    `json:"day"`
+	Comment string `json:"comment" gorm"type:text"`
 	Date    string
 }
 
 type StudentEvent struct {
-	Id    int
-	Name  string
-	Year  int
-	Month int
-	Day   int
-	Url   string
+	Id    int    `json:"id"`
+	Name  string `json:"event_name"`
+	Year  int    `json:"year"`
+	Month int    `json:"month"`
+	Day   int    `json:"day"`
+	Url   string `json:"url"`
 	Date  string
 }
 
