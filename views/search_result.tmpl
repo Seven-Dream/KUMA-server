@@ -1,15 +1,15 @@
 {{ template "header" . }}
-  <body>
+  <body><center>
     <div>
       <h1>検索結果</h1>
     </div>
     <div>
-      <table>
+      <table border=1>
         <tr>
-          <th>講義名</th>
-          <th>担当教員</th>
-          <th>学期</th>
-          <th>曜日・時限</th>
+          <th id="lec">講義名</th>
+          <th id="lec">担当教員</th>
+          <th id="lec">学期</th>
+          <th id="lec">曜日・時限</th>
         </tr>
         {{ range $i, $v := .lecture }}
         <tr>
@@ -26,7 +26,7 @@
       </table>
     </div>
     <div>
-      <a href="/lecture/search">戻る</a>
+      <a href="/lecture/search" class="button">戻る</a>
     </div>
-  </body>
+  </center></body>
 </html>

@@ -1,30 +1,30 @@
 {{ template "header" . }}
-  <body>
+  <body><center>
     <div>
       <h1>教室変更</h1>
     </div>
     <div>
       <form action="/lecture/option/change_room/register" method="post">
-        <table>
+        <table border=1>
           <tr>
-            <th>講義名</th>
+            <th id="lec">講義名</th>
             <td>{{ .lecture.LectureName }}</td>
           </tr>
           <tr>
-            <th>変更後教室名</th>
+            <th id="lec">変更後教室名</th>
             <td><input type="text" name="room"></td>
           </tr>
           <tr>
-            <th>日付</th>
+            <th id="lec">日付</th>
             <td><input type="date" name="date"></td>
           </tr>
         </table>
         <div>
-          <input type="hidden" name="lectureid" value="{{ .lecture.Id }}">
+          <input type="hidden" name="lectureid" value="{{ .lecture.Id }}" class="button">
           <a href="/lecture/option/list/{{ .lecture.Id }}">戻る</a>
-          <input type="submit" value="登録">
+          <input type="submit" value="登録" class="button">
         </div>
       </form>
     </div>
-  </body>
+  </center></body>
 </html>
