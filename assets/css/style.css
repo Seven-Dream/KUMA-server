@@ -3,10 +3,10 @@
 	text-align:center;
 }
 .box5 {
-	 padding: 0.5em 1em;
-	 margin: 2em 0;
-	 font-weight: bold;
-	 border: double 5px #000000;
+	padding: 0.5em 1em;
+	margin: 2em 0;
+	font-weight: bold;
+	border: double 5px #000000;
 }
 .button{
 	padding: 0.5em 1em;
@@ -16,6 +16,15 @@
 	border-bottom: solid 6px #808080;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
 	border-radius: 9px;
+}
+img.posi-kuma{
+	width: 180px;
+	height: 200px;
+}
+#kuma{
+	position: fixed;
+	/*position: relative;*/
+	bottom: 10%;
 }
 /*ID*/
 /*topページで使うもの*/
