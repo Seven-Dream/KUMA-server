@@ -1,30 +1,29 @@
 {{ template "header" . }}
-  </head>
-  <body>
+  <body><center>
     <div>
       <h1>講義休講情報</h1>
       <form action="/lecture/option/cancel/delete/{{ .cancel.Id }}" method="post">
-        <input type="submit" value="削除">
+        <input type="submit" value="削除" class="button">
       </form>
     </div>
     <div>
       <table border="1">
         <tr>
-          <th>講義名</th>
+          <th id="lec">講義名</th>
           <td>{{ .name }}</td>
         </tr>
         <tr>
-          <th>日付</th>
+          <th id="lec">日付</th>
           <td>{{ .cancel.Month }}/{{ .cancel.Day }}</td>
         </tr>
         <tr>
-          <th>コメント</th>
+          <th id="lec">コメント</th>
           <td>{{ .cancel.Comment }}</td>
         </tr>
       </table>
     </div>
     <div>
-      <a href="/lecture/option/list/{{ .cancel.LectureID }}">戻る</a>
+      <a href="/lecture/option/list/{{ .cancel.LectureID }}" class="button">戻る</a>
     </div>
-  </body>
+  </center></body>
 </html>

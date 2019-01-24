@@ -1,26 +1,26 @@
 {{ template "header" . }}
 
-  <body>
+  <body><center>
     <div>
       <h1>講義検索</h1>
     </div>
     <div>
       <form action="/lecture/search/result" method="post">
-        <table>
+        <table border=1>
           <tr>
-            <th>講義名</th>
+            <th id="lec">講義名</th>
             <td><input type="text" name="name"></td>
           </tr>
           <tr>
-            <th>教員名</th>
+            <th id="lec">教員名</th>
             <td><input type="text" name="teachar"></td>
           </tr>
           <tr>
-            <th>開講年度</th>
+            <th id="lec">開講年度</th>
             <td><input type="text" name="year"></td>
           </tr>
           <tr>
-            <th>開講学期</th>
+            <th id="lec">開講学期</th>
             <td>
               <select name="quarter">
               <option>選択してください</option>
@@ -34,7 +34,7 @@
             </td>
           </tr>
           <tr>
-            <th>開講曜日</th>
+            <th id="lec">開講曜日</th>
             <td>
               <select name="week">
               <option>選択してください</option>
@@ -48,7 +48,7 @@
             </td>
           </tr>
           <tr>
-            <th>開講時限</th>
+            <th id="lec">開講時限</th>
             <td>
               <select name="time">
               <option>選択してください</option>
@@ -62,10 +62,10 @@
           </tr>
         </table>
         <div>
-          <a href="/top">戻る</a>
-          <input type="submit" value="検索">
+          <a href="/top" class="button">戻る</a>
+          <input type="submit" value="検索" class="button">
         </div>
       </form>
     </div>
-  </body>
+  </center></body>
 </html>

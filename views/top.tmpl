@@ -1,7 +1,6 @@
 {{ template "header" . }} 
-	</head>
 	<body>
-	<h1 class="title">KUMA管理用サーバー</h1>
+		<h1 class="title">KUMA管理用サーバー</h1>
 		<div>
 			<a href="/logout" id="logout">ログアウト</a>
 		</div>
@@ -9,7 +8,7 @@
 			<!-- 講義状態 -->
 
 			<div class="box5" id="posi1">
-				<a href="/lecture_search">講義状態</a><br>
+				<a href="/lecture/search">講義状態</a><br>
 				<ul>
 					<li>休講情報</li>
 					<li>教室変更</li>
@@ -28,6 +27,10 @@
 			<div class="box5" id="posi4">
 				<a href="/student_event">学生イベント広告</a>
 			</div>
+		</div>
+		<div>
+			<!--KUMAの画像 -->
+			<img src="/assets/picture/KUMA.png" class="posi-kuma" id="kuma">
 		</div>
 	</body>
 </html>

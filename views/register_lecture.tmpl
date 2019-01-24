@@ -1,14 +1,11 @@
 {{ template "header" . }}
-	</head>
-
-	<body>
-		<h1 class="title">{{ .subtitle }}</h1>
+	<body><center>
+		<h1>{{ .subtitle }}</h1>
 		{{ with .id }}
 			<form action="/lecture/delete/{{ . }}" method="post">
 				<input type="submit" value="登録削除" class="button">
 			</form>
 		{{ end }}
-		<center>
 		<div>
 			<form action="{{ .url }}" method="post">
 				<table border="1">
@@ -71,16 +68,15 @@
 					</tr>
 				</table>
 				<div>
-					<a href="/lecture" class="button" id="posi-button">戻る</a>
+					<a href="/lecture" class="button">戻る</a>
 					{{ with .Id }}
-					<input type="submit" value="変更" class="button" id="posi-button">
+					<input type="submit" value="変更" class="button">
 					{{ else }}
-					<input type="submit" value="登録" class="button" id="posi-button">
+					<input type="submit" value="登録" class="button">
 					{{ end }}
 				</div>
 				{{ end }}
 			</form>
 		</div>
-		</center>
-	</body>
+	</center></body>
 </html>

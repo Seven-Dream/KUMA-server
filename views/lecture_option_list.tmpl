@@ -1,5 +1,5 @@
 {{ template "header" . }}
-  <body>
+  <body><center>
     <div>
       <h1>{{ .lecture.LectureName }}</h1>
     </div>
@@ -7,11 +7,11 @@
     <div>
       <!-- 講義情報のtable -->
       <div>
-        <table>
+        <table border=1>
           <tr>
-            <th>担当教員</th>
-            <th>開講学期</th>
-            <th>曜日・時限</th>
+            <th id="lec">担当教員</th>
+            <th id="lec">開講学期</th>
+            <th id="lec">曜日・時限</th>
           </tr>
           <tr>
             <td>{{ .lecture.Teachar }}</td>
@@ -26,9 +26,9 @@
       </div>
       <!-- オプションのtable -->
       <div>
-        <table>
+        <table border=1>
           <tr>
-            <th><a href="/lecture/option/cancel/register/{{ .lecture.Id }}">休講情報</a></th>
+            <th id="lec"><a href="/lecture/option/cancel/register/{{ .lecture.Id }}">休講情報</a></th>
             <td>
             {{ range $i, $v := .cancel }}
             <a href="/lecture/option/cancel/show/{{ $v.Id }}">{{ $v.Month}}/{{ $v.Day }}</a>
@@ -36,7 +36,7 @@
             </td>
           </tr>
           <tr>
-            <th><a href="/lecture/option/change_room/register/{{ .lecture.Id }}">教室変更</a></th>
+            <th id="lec"><a href="/lecture/option/change_room/register/{{ .lecture.Id }}">教室変更</a></th>
             <td>
             {{ range $i, $v := .change }}
             <a href="/lecture/option/change_room/show/{{ $v.Id }}">{{ $v.Month}}/{{ $v.Day }}</a>
@@ -44,7 +44,7 @@
             </td>
           </tr>
           <tr>
-            <th><a href="/lecture/option/test/register/{{ .lecture.Id }}">試験情報</a></th>
+            <th id="lec"><a href="/lecture/option/test/register/{{ .lecture.Id }}">試験情報</a></th>
             <td>
             {{ range $i, $v := .test }}
             <a href="/lecture/option/test/show/{{ $v.Id }}">{{ $v.Month}}/{{ $v.Day }}</a>
@@ -55,7 +55,7 @@
       </div>
     </div>
     <div>
-      <a href="/lecture/search">戻る</a>
+      <a href="/lecture/search" class="button">戻る</a>
     </div>
-  </body>
+  </center>></body>
 </html>
