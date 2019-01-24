@@ -1,5 +1,5 @@
 {{ template "header" . }}
-	<body>
+	<body><center>
 		<h1>{{ .subtitle }}</h1>
 		{{ with .id }}
 			<form action="/lecture/delete/{{ . }}" method="post">
@@ -78,5 +78,5 @@
 				{{ end }}
 			</form>
 		</div>
-	</body>
+	</center></body>
 </html>
