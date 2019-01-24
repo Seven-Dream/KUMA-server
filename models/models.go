@@ -196,7 +196,7 @@ func GetLectureDataFromId(id int) (Lecture, error) {
 	lecture := Lecture{Id: id}
 	o := []Other{}
 
-	err = db.First(&lecture).Related(&o).Error
+	err = db.Find(&lecture).Related(&o).Error
 	if err != nil {
 		return Lecture{}, err
 	}
