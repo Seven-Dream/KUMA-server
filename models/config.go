@@ -5,4 +5,5 @@ var (
 	user     = "user"
 	dbname   = "dbname"
 	password = ""
+	port = 5432
 )
