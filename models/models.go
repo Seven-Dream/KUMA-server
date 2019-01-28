@@ -15,57 +15,35 @@ func init() {
 	}
 	defer db.Close()
 
-	/*
-	err = db.DropTableIfExists(&User{}, &Lecture{}, &Other{}).Error
-	if err != nil  {
-		panic(err)
-	}
-
-	err = db.CreateTable(&User{}, &Lecture{}, &Other{}).Error
+	err = CreateTable(&User{})
 	if err != nil {
 		panic(err)
 	}
-
-	err = db.DropTableIfExists(&StudentEvent{}).Error
-	if err != nil  {
-		panic(err)
-	}
-
-	err = db.CreateTable(&StudentEvent{}).Error
+	err = CreateTable(&Lecture{})
 	if err != nil {
 		panic(err)
 	}
-	*/
-
-	err = tableInit(&User{})
+	err = CreateTable(&Other{})
 	if err != nil {
 		panic(err)
 	}
-	err = tableInit(&Lecture{})
+	err = CreateTable(&UniversityEvent{})
 	if err != nil {
 		panic(err)
 	}
-	err = tableInit(&Other{})
+	err = CreateTable(&StudentEvent{})
 	if err != nil {
 		panic(err)
 	}
-	err = tableInit(&UniversityEvent{})
+	err = CreateTable(&Test{})
 	if err != nil {
 		panic(err)
 	}
-	err = tableInit(&StudentEvent{})
+	err = CreateTable(&Cancel{})
 	if err != nil {
 		panic(err)
 	}
-	err = tableInit(&Test{})
-	if err != nil {
-		panic(err)
-	}
-	err = tableInit(&Cancel{})
-	if err != nil {
-		panic(err)
-	}
-	err =  tableInit(&ChangeRoom{})
+	err =  CreateTable(&ChangeRoom{})
 	if err != nil {
 		panic(err)
 	}
@@ -74,25 +52,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-}
-
-func tableInit(table interface{}) error {
-	db, err := open()
-	if err != nil {
-		panic(err)
-	}
-	defer db.Close()
-
-	err = db.DropTableIfExists(table).Error
-	if err != nil {
-		return err
-	}
-
-	err = db.CreateTable(table).Error
-	if err != nil {
-		return err
-	}
-	return nil
 }
 
 // dbとの接続
