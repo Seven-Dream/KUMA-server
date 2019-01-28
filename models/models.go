@@ -9,49 +9,66 @@ import (
 
 
 func init() {
-	db, err := open()
+	var db *gorm.DB
+	var err error
+	for db, err = open(); err != nil; {
+		fmt.Println("--")
+	}
+	/*
 	if err != nil {
 		panic(err)
 	}
+	*/
 	defer db.Close()
 
-	err = db.CreateTable(&User{}).Error
+	err = initTable(&User{})
 	if err != nil {
 		panic(err)
 	}
-	err = db.CreateTable(&Lecture{}).Error
+	err = initTable(&Lecture{})
 	if err != nil {
 		panic(err)
 	}
-	err = db.CreateTable(&Other{}).Error
+	err = initTable(&Other{})
 	if err != nil {
 		panic(err)
 	}
-	err = db.CreateTable(&UniversityEvent{}).Error
+	err = initTable(&UniversityEvent{})
 	if err != nil {
 		panic(err)
 	}
-	err = db.CreateTable(&StudentEvent{}).Error
+	err = initTable(&StudentEvent{})
 	if err != nil {
 		panic(err)
 	}
-	err = db.CreateTable(&Test{}).Error
+	err = initTable(&Test{})
 	if err != nil {
 		panic(err)
 	}
-	err = db.CreateTable(&Cancel{}).Error
+	err = initTable(&Cancel{})
 	if err != nil {
 		panic(err)
 	}
-	err =  db.CreateTable(&ChangeRoom{}).Error
+	err =  initTable(&ChangeRoom{})
 	if err != nil {
 		panic(err)
 	}
 
-	err = addUserData("", "")
+	addUserData("", "")
+}
+
+func initTable(table interface{}) error {
+	db, err := open()
 	if err != nil {
-		panic(err)
+		return err
 	}
+	defer db.Close()
+	ok := db.HasTable(table)
+	if ok {
+		return nil
+	}
+	err = db.CreateTable(table).Error
+	return err
 }
 
 // dbとの接続
