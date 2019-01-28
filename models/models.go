@@ -5,6 +5,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 
 	"fmt"
+	"time"
 )
 
 
@@ -12,7 +13,8 @@ func init() {
 	var db *gorm.DB
 	var err error
 	for db, err = open(); err != nil; {
-		fmt.Println("--")
+		fmt.Println(err)
+		time.Sleep(3*time.Second)
 	}
 	/*
 	if err != nil {
@@ -54,7 +56,7 @@ func init() {
 		panic(err)
 	}
 
-	addUserData("", "")
+	addUserData("kuma", "kuma")
 }
 
 func initTable(table interface{}) error {

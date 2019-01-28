@@ -1,0 +1,14 @@
+version: '3'
+services:
+  db-server:
+    image: postgres
+    environment:
+      POSTGRES_USER: "kuma"
+      POSTGRES_PASSWORD: "kuma"
+      POSTGRES_DB: "kuma"
+  app:
+    build: .
+    ports:
+      - 80:8080
+    depends_on:
+      - db-server

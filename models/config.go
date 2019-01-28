@@ -1,9 +1,9 @@
 package models
 
 var (
-	hostname = "localhost"
-	user     = "user"
-	dbname   = "dbname"
-	password = ""
+	hostname = "db-server"
+	user     = "kuma"
+	dbname   = "kuma"
+	password = "kuma"
 	port = 5432
 )
