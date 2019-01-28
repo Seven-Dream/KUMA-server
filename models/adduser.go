@@ -22,14 +22,11 @@ func addUserData(id string, pass string) error {
 	}
 	defer db.Close()
 
-	user := "kuma"
-	pass = "kuma"
-	password := createEncryptedPassword(pass)
+	user := id
+	plainPass := pass
+	password := createEncryptedPassword(plainPass)
 
 	err = db.Create(&User{Id: user, Password: password}).Error
-	if err != nil {
-		panic(err)
-	}
 	return err
 }
 
