@@ -15,35 +15,35 @@ func init() {
 	}
 	defer db.Close()
 
-	err = CreateTable(&User{})
+	err = db.CreateTable(&User{}).Error
 	if err != nil {
 		panic(err)
 	}
-	err = CreateTable(&Lecture{})
+	err = db.CreateTable(&Lecture{}).Error
 	if err != nil {
 		panic(err)
 	}
-	err = CreateTable(&Other{})
+	err = db.CreateTable(&Other{}).Error
 	if err != nil {
 		panic(err)
 	}
-	err = CreateTable(&UniversityEvent{})
+	err = db.CreateTable(&UniversityEvent{}).Error
 	if err != nil {
 		panic(err)
 	}
-	err = CreateTable(&StudentEvent{})
+	err = db.CreateTable(&StudentEvent{}).Error
 	if err != nil {
 		panic(err)
 	}
-	err = CreateTable(&Test{})
+	err = db.CreateTable(&Test{}).Error
 	if err != nil {
 		panic(err)
 	}
-	err = CreateTable(&Cancel{})
+	err = db.CreateTable(&Cancel{}).Error
 	if err != nil {
 		panic(err)
 	}
-	err =  CreateTable(&ChangeRoom{})
+	err =  db.CreateTable(&ChangeRoom{}).Error
 	if err != nil {
 		panic(err)
 	}
@@ -58,9 +58,9 @@ func init() {
 func open() (*gorm.DB, error){
 	var connect string
 	if password == "" {
-		connect = fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable", hostname, user, dbname)
+		connect = fmt.Sprintf("host=%s user=%s dbname=%s port=%d sslmode=disable", hostname, user, dbname, port)
 	} else {
-		connect = fmt.Sprintf("host=%s user=%s dbname=%s password=%s sslmode=disable", hostname, user, dbname, password)
+		connect = fmt.Sprintf("host=%s user=%s dbname=%s password=%s port=%d sslmode=disable", hostname, user, dbname, password, port)
 	}
 	return gorm.Open("postgres", connect)
 }
