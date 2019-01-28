@@ -5,6 +5,8 @@ import (
 	"github.com/go-session/gin-session"
 
 	c "KUMA-server/controllers"
+
+	"net/http"
 )
 
 func main() {
@@ -14,6 +16,11 @@ func main() {
 	router.Static("/assets", "./assets")
 	router.LoadHTMLGlob("views/*")
 
+
+	router.GET("/", func(co *gin.Context) {
+		co.Redirect(http.StatusSeeOther, "/login")
+		return
+	})
 	router.GET("/login", c.LoginGet)
 	router.POST("/login", c.LoginPost)
 
