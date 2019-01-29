@@ -1,0 +1,42 @@
+{{ template "header" . }}
+	<body>
+		<center>
+			<div>
+				<h1>{{ .subtitle }}</h1>
+				{{ with .event.Id }}
+					<form action="/student_event/delete/{{ . }}" method="post">
+						<input type="submit" value="登録削除" class="button" id="posi-logout">
+					</form>
+				{{ end }}
+			</div>
+			<div>
+				<form action="{{ .url }}" method="post" enctype="multipart/form-data">
+					<table border=1>
+						{{ with .event }}
+						<tr>
+							<th id="std"><label for="name">イベント名</label></th>
+							<td><input type="text" id="name" value="{{ .Name }}" name="name"></td>
+						</tr>
+						<tr>
+							<th id="std"><label for="date">日付</label></th>
+							<td><input type="date" id="date" value="{{ .Date }}" name="date"></td>
+						</tr>
+						<tr>
+							<th id="std">><label for="pdf">PDF</label></th>
+							<td><input type="file" id="pdf" name="pdf"></td>
+						</tr>
+						{{ end }}
+					</table>
+					<div>
+						<a href="/student_event" class="button">戻る</a>
+						{{ with .event.Id }}
+						<input type="submit" value="変更" class="button">
+						{{ else }}
+						<input type="submit" value="登録" class="button">
+						{{ end }}
+					</div>
+				</form>
+			</center>
+		</div>
+	</body>
+</html>

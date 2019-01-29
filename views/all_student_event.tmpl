@@ -1,0 +1,22 @@
+{{ template "header" . }}
+	<body>
+		<center>
+			<h1>学生イベント一覧</h1>
+			<a href="/student_event/register" class="button" id="posi-logout">新規登録</a>
+	
+			<table border=1>
+				<tr>
+					<th id="std">日付</th>
+					<th id="std">予定名</th>
+				</tr>
+				{{ range $i, $v := .student }}
+				<tr>
+					<td>{{ $v.Month }} / {{ $v.Day }}</td>
+					<td><a href="/student_event/show/{{ $v.Id }}">{{ $v.Name }}</a></td>
+				</tr>
+				{{ end }}
+			</table>
+			<a href="/top" class="button" id="posi-back">戻る</a>
+		</center>
+	</body>
+</html>

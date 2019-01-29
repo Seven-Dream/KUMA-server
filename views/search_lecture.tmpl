@@ -1,0 +1,71 @@
+{{ template "header" . }}
+
+  <body><center>
+    <div>
+      <h1>講義検索</h1>
+    </div>
+    <div>
+      <form action="/lecture/search/result" method="post">
+        <table border=1>
+          <tr>
+            <th id="lec">講義名</th>
+            <td><input type="text" name="name"></td>
+          </tr>
+          <tr>
+            <th id="lec">教員名</th>
+            <td><input type="text" name="teachar"></td>
+          </tr>
+          <tr>
+            <th id="lec">開講年度</th>
+            <td><input type="text" name="year"></td>
+          </tr>
+          <tr>
+            <th id="lec">開講学期</th>
+            <td>
+              <select name="quarter">
+              <option>選択してください</option>
+              <option value="1">1Q</option>
+              <option value="2">2Q</option>
+              <option value="3">3Q</option>
+              <option value="4">4Q</option>
+              <option value="5">1学期</option>
+              <option value="6">2学期</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th id="lec">開講曜日</th>
+            <td>
+              <select name="week">
+              <option>選択してください</option>
+              <option value="1">月曜日</option>
+              <option value="2">火曜日</option>
+              <option value="3">水曜日</option>
+              <option value="4">木曜日</option>
+              <option value="5">金曜日</option>
+              <option value="6">土曜日</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th id="lec">開講時限</th>
+            <td>
+              <select name="time">
+              <option>選択してください</option>
+              <option value="1">1限</option>
+              <option value="2">2限</option>
+              <option value="3">3限</option>
+              <option value="4">4限</option>
+              <option value="5">5限</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+        <div>
+          <a href="/top" class="button">戻る</a>
+          <input type="submit" value="検索" class="button">
+        </div>
+      </form>
+    </div>
+  </center></body>
+</html>
