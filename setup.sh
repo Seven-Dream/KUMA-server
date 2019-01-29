@@ -15,5 +15,5 @@ echo "----- start docker service ------"
 sudo service docker start
 
 echo "if you want to use KUMA-server,"
-echo "export PATH=$PATH:/usr/local/bin"
+echo "export PATH=\$PATH:/usr/local/bin"
 echo "docker-compose up" 
