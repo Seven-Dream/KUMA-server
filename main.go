@@ -7,6 +7,7 @@ import (
 	c "KUMA-server/controllers"
 
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -15,6 +16,7 @@ func main() {
 	router.Use(ginsession.New())
 	router.Static("/assets", "./assets")
 	router.LoadHTMLGlob("views/*")
+	os.Mkdir("./assets/img/", 0666)
 
 
 	router.GET("/", func(co *gin.Context) {
