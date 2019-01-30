@@ -4,7 +4,7 @@ ENV GOPATH /go
 
 RUN go version
 
-COPY . /go/src/KUMA-server/
+#COPY . /go/src/KUMA-server/
 
 RUN go get -u github.com/go-session/gin-session \
 && go get -u github.com/gin-gonic/gin \
