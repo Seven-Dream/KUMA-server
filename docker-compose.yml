@@ -14,5 +14,7 @@ services:
       - 80:8080
     depends_on:
       - db-server
+    environment:
+      LANG: "C.UTF-8"
     volumes:
       - .:/go/src/KUMA-server
