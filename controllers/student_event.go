@@ -79,6 +79,7 @@ func ChangeStudentEvent(c *gin.Context) {
 			}
 		}
 	}
+	postedStudentEvent.Id = id
 
 	err = m.UpdateStudentEventFromArgment(&postedStudentEvent)
 

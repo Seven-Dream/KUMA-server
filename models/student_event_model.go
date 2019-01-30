@@ -48,7 +48,7 @@ func UpdateStudentEventFromArgment(se *StudentEvent) error {
 	}
 	defer db.Close()
 
-	err = db.Model(&StudentEvent{}).Updates(se).Error
+	err = db.Debug().Model(&StudentEvent{}).Where("id = ?", se.Id).Updates(se).Error
 	return err
 }
 

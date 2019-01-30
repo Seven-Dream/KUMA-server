@@ -137,20 +137,25 @@ func getStudentEventFromPost(c *gin.Context) (m.StudentEvent, bool) {
 	}
 
 	// 日付のを分割し、year -> month -> day
-	splitedDate := strings.Split(date, "-")
+	var splitedDate []string
+	var year, month, day int
+	var err error
+	if date != "" {
+		splitedDate = strings.Split(date, "-")
+		year, err = strconv.Atoi(splitedDate[0])
+		if err != nil {
+			isAllPostDataExist = false
+		}
+		month, err = strconv.Atoi(splitedDate[1])
+		if err != nil {
+			isAllPostDataExist = false
+		}
+		day, err = strconv.Atoi(splitedDate[2])
+		if err != nil {
+			isAllPostDataExist = false
+		}
+	}
 
-	year, err := strconv.Atoi(splitedDate[0])
-	if err != nil {
-		isAllPostDataExist = false
-	}
-	month, err := strconv.Atoi(splitedDate[1])
-	if err != nil {
-		isAllPostDataExist = false
-	}
-	day, err := strconv.Atoi(splitedDate[2])
-	if err != nil {
-		isAllPostDataExist = false
-	}
 
 	// create StudentEvent struct
 	studentEvent := m.StudentEvent{Name: eventName, Year: year, Month: month, Day: day, Date: date}
