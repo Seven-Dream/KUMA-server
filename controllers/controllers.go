@@ -56,7 +56,7 @@ func createEncryptedPassword(plainTextPassword string) string {
 
 //              example: "./assets/img/file.pdf"
 func deleteFile(filePath string) error {
-	err := os.Remove(filePath)
+	err := os.Remove("."+filePath)
 	return err
 }
 
@@ -179,20 +179,20 @@ func getStudentEventFromPost(c *gin.Context) (m.StudentEvent, bool) {
 	}
 
 	// pdfが存在するとサーバに作成
-	saveFliePath := "./assets/img/" + filename
-	fd, err := os.Create(saveFliePath)
+	saveFilePath := "/assets/img/" + filename
+	fd, err := os.Create("."+saveFilePath)
 	if err != nil {
 		fmt.Println(err)
 	} else {
 		fd.Close()
 	}
 	fmt.Println("---------")
-	err = c.SaveUploadedFile(pdf, saveFliePath)
+	err = c.SaveUploadedFile(pdf, "."+saveFilePath)
 	if err != nil {
 		fmt.Println(err)
 		return studentEvent, isAllPostDataExist
 	} else {
-		studentEvent.Url = saveFliePath
+		studentEvent.Url = saveFilePath
 		return studentEvent, isAllPostDataExist
 	}
 }
