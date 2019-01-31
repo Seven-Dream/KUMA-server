@@ -103,7 +103,7 @@ func AllLecture() []Lecture {
 	defer db.Close()
 	lecture := []Lecture{}
 
-	err = db.Find(&lecture).Error
+	err = db.Order("year DESC, quarter").Find(&lecture).Error
 	if err != nil {
 		fmt.Println("------------")
 		fmt.Println(err)

@@ -43,7 +43,7 @@ func GetLectureFromMultiId(id []int) ([]Lecture, error){
 
 	returnLecture := []Lecture{}
 
-	err = db.Where("id IN (?)", id).Find(&returnLecture).Error
+	err = db.Where("id IN (?)", id).Order("year DESC").Find(&returnLecture).Error
 	if err != nil {
 		return returnLecture, err
 	}
