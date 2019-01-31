@@ -18,7 +18,15 @@
 						<tr>
 							<td><a href="/lecture/show/{{ .Id }}">{{ .LectureName }}</a></td>
 							<td>{{ .Teachar }}</td>
-							<td>{{ .Quarter }}</td>
+              <td>
+              {{ if eq 1 .Quarter }} 1Q {{ end }}
+              {{ if eq 2 .Quarter }} 2Q {{ end }}
+              {{ if eq 3 .Quarter }} 3Q {{ end }}
+              {{ if eq 4 .Quarter }} 4Q {{ end }}
+              {{ if eq 5 .Quarter }} 1学期 {{ end }}
+              {{ if eq 6 .Quarter }} 2学期 {{ end }}
+              {{ if eq 7 .Quarter }} 通年 {{ end }}
+              </td>
 							<td>
 							{{ range $i, $data := .Others }}
 							{{ $data.WeekString  }} {{ $data.Time }}限<br>

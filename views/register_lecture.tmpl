@@ -20,7 +20,14 @@
 					</tr>
 					<tr>
 						<th id="lec">開講年度</th>
-						<td><input type="text" value="{{ .Year }}" name="year"></td>
+						<td>
+						<select name="year">
+            <option>選択してください</option>
+						<option value="2019" {{ if eq 2019 .Year }} selected {{ end }}>2019</option>
+						<option value="2018" {{ if eq 2018 .Year }} selected {{ end }}>2018</option>
+						<option value="2017" {{ if eq 2017 .Year }} selected {{ end }}>2017</option>
+						<option value="2016" {{ if eq 2016 .Year }} selected {{ end }}>2016</option>
+						</td>
 					</tr>
 					<tr>
 						<th id="lec">教室名</th>
