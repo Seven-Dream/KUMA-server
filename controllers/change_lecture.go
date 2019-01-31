@@ -45,5 +45,5 @@ func ChangeLecturePost(c *gin.Context) {
 		c.Redirect(http.StatusSeeOther, "/lecture/show/"+idStr)
 		return
 	}
-	c.Redirect(http.StatusSeeOther, "/lecture/show/"+idStr)
+	c.Redirect(http.StatusSeeOther, "/lecture")
 }
