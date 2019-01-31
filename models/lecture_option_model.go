@@ -14,7 +14,7 @@ func GetTestFromLectureId(lectureId int) ([]Test, error) {
 
 	test := []Test{}
 
-	err = db.Where(&Test{LectureID: lectureId}).Find(&test).Error
+	err = db.Where(&Test{LectureID: lectureId}).Order("month, day").Find(&test).Error
 	return test, err
 }
 
@@ -28,7 +28,7 @@ func GetCancelFromLectureId(lectureId int) ([]Cancel, error) {
 
 	cancel := []Cancel{}
 
-	err = db.Where(&Cancel{LectureID: lectureId}).Find(&cancel).Error
+	err = db.Where(&Cancel{LectureID: lectureId}).Order("month, day").Find(&cancel).Error
 	return cancel, err
 }
 
@@ -42,7 +42,7 @@ func GetChangeRoomFromLectureId(lectureId int) ([]ChangeRoom, error) {
 
 	change := []ChangeRoom{}
 
-	err = db.Where(&ChangeRoom{LectureID: lectureId}).Find(&change).Error
+	err = db.Where(&ChangeRoom{LectureID: lectureId}).Order("month, day").Find(&change).Error
 	return change, err
 }
 

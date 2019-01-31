@@ -13,7 +13,7 @@ func GetAllUniversityEvent() ([]UniversityEvent, error) {
 	defer db.Close()
 
 	returnEvent := []UniversityEvent{}
-	err = db.Find(&returnEvent).Error
+	err = db.Order("year DESC, month DESC, day DESC").Find(&returnEvent).Error
 
 	return returnEvent, err
 }
